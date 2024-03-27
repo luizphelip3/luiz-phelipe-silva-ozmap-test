@@ -25,6 +25,7 @@ class Base extends TimeStamps {
 
   next();
 })
+
 export class User extends Base {
   @Prop({ required: true })
   name!: string;

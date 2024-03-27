@@ -6,10 +6,10 @@ import * as sinon from 'sinon';
 import { faker } from '@faker-js/faker';
 import { expect, assert } from 'chai';
 
-import './database';
+import './database/database';
 import { Region, RegionModel, UserModel } from './models';
 import GeoLib from './lib';
-import server from './server';
+import app from './app';
 
 describe('Models', () => {
   let user;
@@ -74,13 +74,13 @@ describe('Models', () => {
   });
 
   it('should return a list of users', async () => {
-    const response = supertest(server).get(`/user`);
+    const response = supertest(app.server).get(`/user`);
 
     expect(response).to.have.property('status', 200);
   });
 
   it('should return a user', async () => {
-    const response = await supertest(server).get(`/users/${user._id}`);
+    const response = await supertest(app.server).get(`/users/${user._id}`);
 
     expect(response).to.have.property('status', 200);
   });
