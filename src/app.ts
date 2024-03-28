@@ -1,5 +1,5 @@
 import express from "express";
-import { userRouter } from "./modules/user/infra/http/routes";
+import { userRouter } from "./modules/user/infra/http/user.routes";
 import "./config/database/mongo-db";
 
 class App {
