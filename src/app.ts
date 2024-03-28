@@ -1,5 +1,6 @@
 import * as express from "express";
 import { userRouter } from "./modules/user/infra/http/routes";
+import "./database/mongo-db";
 
 class App {
   server: express.Application;

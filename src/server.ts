@@ -1,5 +1,3 @@
-import 'dotenv/config';
-import 'newrelic';
 import app from './app';
 
 const port = process.env.PORT || 3000;

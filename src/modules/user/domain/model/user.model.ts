@@ -1,11 +1,9 @@
 import "reflect-metadata";
 
 import { Prop, Ref, getModelForClass, pre } from "@typegoose/typegoose";
-import * as mongoose from "mongoose";
-import lib from "../../../../lib";
+import lib from "../../../shared/lib/geo-lib";
 import { Region } from "../../../region/domain/model/region.model";
-import { Base } from "../../../shared/types/base.type";
-import ObjectId = mongoose.Types.ObjectId;
+import { Base } from "../../../shared/utils/types/base.type";
 
 @pre<User>("save", async function (next) {
   const region = this as Omit<any, keyof User> & User;

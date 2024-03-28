@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import { Prop, Ref, modelOptions, mongoose, pre } from "@typegoose/typegoose";
-import { Base } from "../../../shared/types/base.type";
+import { Base } from "../../../shared/utils/types/base.type";
 import { User, UserModel } from "../../../user/domain/model/user.model";
 import ObjectId = mongoose.Types.ObjectId;
 
