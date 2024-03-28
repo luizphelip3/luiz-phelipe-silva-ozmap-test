@@ -6,7 +6,7 @@ import * as sinon from 'sinon';
 import { faker } from '@faker-js/faker';
 import { expect, assert } from 'chai';
 
-import './database/mongo-db';
+import './config/database/mongo-db';
 import { Region, RegionModel, UserModel } from './models';
 import GeoLib from './modules/shared/lib/geo-lib';
 import app from './app';

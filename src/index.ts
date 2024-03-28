@@ -1,1 +1,1 @@
-import './database/mongo-db';
+import './config/database/mongo-db';
