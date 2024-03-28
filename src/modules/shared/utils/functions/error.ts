@@ -1,8 +1,10 @@
+import { StatusCode } from "../contraints/status-code";
+
 export class ValidationError extends Error {
   statusCode: number;
 
   constructor({
-    statusCode = 400,
+    statusCode = StatusCode.BAD_REQUEST,
     message,
   }: {
     statusCode?: number;
@@ -18,7 +20,7 @@ export class DatabaseError extends Error {
   statusCode: number;
 
   constructor({
-    statusCode = 500,
+    statusCode = StatusCode.INTERNAL_SERVER_ERROR,
     message,
   }: {
     statusCode?: number;

@@ -1,4 +1,3 @@
-// AddressDto.ts
 import { IsNotEmpty, IsString, Max, MaxLength } from 'class-validator';
 
 export class AddressDTO {
