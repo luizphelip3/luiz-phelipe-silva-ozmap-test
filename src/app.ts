@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 import { userRouter } from "./modules/user/infra/http/routes";
 import "./config/database/mongo-db";
 
@@ -11,7 +11,8 @@ class App {
   }
 
   routes() {
-    this.server.use(userRouter);
+    this.server.use(express.json());
+    this.server.use('/user', userRouter);
   }
 }
 
