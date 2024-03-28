@@ -1,3 +1,4 @@
+import GeoLib from '../../../../shared/lib/geo-lib/geo-lib';
 import { ValidationError } from '../../../../shared/utils/functions/error';
 import { formatAddress } from '../../../../shared/utils/functions/format-address';
 import { User } from '../../../domain/model/user.model';
@@ -6,22 +7,32 @@ import { CreateUserDTO } from './dto/create-user.dto';
 
 class CreateUserUseCase {
   async execute({ email, name, address, coordinates }: CreateUserDTO) {
+    if (!coordinates && !address) {
+      throw new ValidationError({
+        message: 'Address or coordinates must be provided!',
+      });
+    }
+
+    if (coordinates && address) {
+      throw new ValidationError({
+        message: 'Address and coordinates must be provided together!',
+      });
+    }
+
     const userToCreate = new User();
 
     if (address) {
+      const { lat, lng } = await GeoLib.getCoordinatesFromAddressZipCode(
+        address.zipCode,
+      );
       userToCreate.address = formatAddress(address);
-      userToCreate.coordinates = [123, 456];
+      userToCreate.coordinates = [lat, lng];
     }
 
     if (coordinates) {
-      userToCreate.address = 'ulala';
+      const address = await GeoLib.getAddressFromCoordinates(coordinates);
+      userToCreate.address = address;
       userToCreate.coordinates = [coordinates.lat, coordinates.lng];
-    }
-
-    if (!coordinates && !address) {
-      throw new ValidationError({
-        message: 'Address or Coordinated must be provided!',
-      });
     }
 
     userToCreate.name = name;

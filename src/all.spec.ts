@@ -8,7 +8,7 @@ import { expect, assert } from 'chai';
 
 import './config/database/mongo-db';
 import { Region, RegionModel, UserModel } from './models';
-import GeoLib from './modules/shared/lib/geo-lib';
+import GeoLib from './modules/shared/lib/geo-lib/geo-lib';
 import app from './app';
 
 describe('Models', () => {
@@ -18,7 +18,7 @@ describe('Models', () => {
 
   before(async () => {
     geoLibStub.getAddressFromCoordinates = sinon.stub(GeoLib, 'getAddressFromCoordinates').resolves(faker.location.streetAddress({ useFullAddress: true }));
-    geoLibStub.getCoordinatesFromAddress = sinon.stub(GeoLib, 'getCoordinatesFromAddress').resolves({ lat: faker.location.latitude(), lng: faker.location.longitude() });
+    geoLibStub.getCoordinatesFromAddressZipCode = sinon.stub(GeoLib, 'getCoordinatesFromAddress').resolves({ lat: faker.location.latitude(), lng: faker.location.longitude() });
 
     session = await mongoose.startSession();
     user = await UserModel.create({

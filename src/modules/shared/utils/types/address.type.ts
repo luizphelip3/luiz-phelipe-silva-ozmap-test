@@ -4,5 +4,6 @@ export type Address = {
     neighborhood: string;
     city: string;
     state: string;
-    zip_code: string;
+    zipCode: string;
+    country: string;
   };

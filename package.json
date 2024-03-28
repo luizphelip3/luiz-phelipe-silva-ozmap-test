@@ -13,6 +13,7 @@
   "dependencies": {
     "@faker-js/faker": "^8.1.0",
     "@typegoose/typegoose": "^11.5.0",
+    "axios": "^1.6.8",
     "chai": "^4.3.10",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
