@@ -4,6 +4,7 @@
   "description": "DevOZ - Tech test",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node src/server.ts",
     "dev": "nodemon index.ts",
     "test": "mocha --require ts-node/register ./src/**/*.spec.ts --exit"
   },

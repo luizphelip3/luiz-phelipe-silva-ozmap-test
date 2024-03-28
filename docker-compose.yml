@@ -1,0 +1,29 @@
+version: '3.9'
+name: 'ozmap-test'
+services:
+  # Mongo DB service
+  mongo_db:
+    container_name: ozmap-mongo-database
+    image: mongo:latest
+    env_file:
+      - .env
+    volumes:
+      -  ozmap-mongo-database_container:/data/db
+    restart: 'always'
+
+  # API Service
+  api:
+    build: .
+    container_name: ozmap-api
+    ports:
+      - ${API_PORT}:${API_PORT}
+    env_file:
+      - .env
+    command: npm run dev
+    # env_file:
+    #   - .env
+    depends_on:
+      - mongo_db
+
+volumes:
+  ozmap-mongo-database_container:
