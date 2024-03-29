@@ -10,8 +10,8 @@ import {
   GeocodingResponseStatus,
 } from './types/geo-lib.type';
 
-class GeoLib {
-  public async getAddressFromCoordinates(coordinates: {
+class Geocoding {
+  async getAddressFromCoordinates(coordinates: {
     lat: number;
     lng: number;
   }): Promise<string> {
@@ -23,24 +23,24 @@ class GeoLib {
       },
     });
 
-    let data: GeocodingResponse = geocodingRequest.data;
+    let geocodingResponse: GeocodingResponse = geocodingRequest.data;
 
-    if (Object.values(GeocodingResponseStatus)[data.status] !== 'OK') {
+    if (Object.values(GeocodingResponseStatus)[geocodingResponse.status] !== 'OK') {
       throw new ExternalRequestError({
         message: 'Resposta inválida da Geocoding API',
       });
     }
 
-    if (!data.results.length) {
+    if (!geocodingResponse.results.length) {
       throw new ValidationError({
         message: 'Nenhum endereço foi encontrado com as coordenadas informadas',
       });
     }
 
-    return data.results[0].formatted_address;
+    return geocodingResponse.results[0].formatted_address;
   }
 
-  public async getCoordinatesFromAddressZipCode(
+  async getCoordinatesFromAddressZipCode(
     zipCode: string,
   ): Promise<{ lat: number; lng: number }> {
     try {
@@ -48,11 +48,11 @@ class GeoLib {
         `${GEOCODING_URL}${zipCode}&key=${GOOGLE_GEOCODING_API_KEY}`,
       );
 
-      let data: GeocodingResponse = geocodingRequest.data;
+      let geocodingResponse: GeocodingResponse = geocodingRequest.data;
 
       if (
-        !data.results.length ||
-        Object.values(GeocodingResponseStatus)[data.status] === 'ZERO_RESULTS'
+        !geocodingResponse.results.length ||
+        Object.values(GeocodingResponseStatus)[geocodingResponse.status] === 'ZERO_RESULTS'
       ) {
         throw new ValidationError({
           message:
@@ -60,13 +60,13 @@ class GeoLib {
         });
       }
 
-      if (Object.values(GeocodingResponseStatus)[data.status] !== 'OK') {
+      if (Object.values(GeocodingResponseStatus)[geocodingResponse.status] !== 'OK') {
         throw new ExternalRequestError({
           message: 'Geocoding API returned invalid request status',
         });
       }
 
-      return data.results[0].geometry.location;
+      return geocodingResponse.results[0].geometry.location;
     } catch (error) {
       throw new ExternalRequestError({
         message: 'Error while consulting Geocoding API',
@@ -75,4 +75,4 @@ class GeoLib {
   }
 }
 
-export default new GeoLib();
+export default new Geocoding();

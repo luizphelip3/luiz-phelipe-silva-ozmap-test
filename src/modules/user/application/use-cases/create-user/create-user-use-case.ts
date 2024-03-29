@@ -1,4 +1,4 @@
-import GeoLib from '../../../../shared/lib/geo-lib/geo-lib';
+import Geocoding from '../../../../shared/lib/geocoding/geocoding';
 import { ValidationError } from '../../../../shared/utils/functions/error';
 import { formatAddress } from '../../../../shared/utils/functions/format-address';
 import { User } from '../../../domain/model/user.model';
@@ -22,7 +22,7 @@ class CreateUserUseCase {
     const userToCreate = new User();
 
     if (address) {
-      const { lat, lng } = await GeoLib.getCoordinatesFromAddressZipCode(
+      const { lat, lng } = await Geocoding.getCoordinatesFromAddressZipCode(
         address.zipCode,
       );
       userToCreate.address = formatAddress(address);
@@ -30,7 +30,7 @@ class CreateUserUseCase {
     }
 
     if (coordinates) {
-      const address = await GeoLib.getAddressFromCoordinates(coordinates);
+      const address = await Geocoding.getAddressFromCoordinates(coordinates);
       userToCreate.address = address;
       userToCreate.coordinates = [coordinates.lat, coordinates.lng];
     }
