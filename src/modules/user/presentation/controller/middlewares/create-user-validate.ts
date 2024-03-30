@@ -1,7 +1,7 @@
 import { validate } from 'class-validator';
 import { NextFunction, Request, Response } from 'express';
 import { ValidationError } from '../../../../shared/utils';
-import { CreateUserRequestDTO } from '../../dto/create-user/create-user-request.dto';
+import { CreateUserRequestDTO } from './dto/create-user/create-user-request.dto';
 import { FindUserRequestDTO } from '../../dto/find-user-request/find-user-request.dto';
 
 class UserRequestsValidator {

@@ -4,7 +4,7 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { Coordinates, Address } from '../../../../shared/utils';
+import { Coordinates, Address } from '../../../../../../shared/utils';
 import { Type } from 'class-transformer';
 import { AddressDTO } from './address.dto';
 import { CoordinatesDTO } from './coordinates.dto';
