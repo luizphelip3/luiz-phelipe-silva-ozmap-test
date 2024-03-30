@@ -23,6 +23,27 @@ class UserRepository {
       });
     }
   }
+
+  async findAll(
+    page: number,
+    limit: number,
+  ): Promise<{ users: User[]; totalItems: number;}> {
+    try {
+      const [users, totalItems] = await Promise.all([
+        UserModel.find()
+          .limit(limit)
+          .skip((page - 1) * limit),
+        UserModel.count(),
+      ]);
+
+      return { users, totalItems};
+    } catch (error) {
+      throw new DatabaseError({
+        message: 'Could not find user.',
+        details: error.message,
+      });
+    }
+  }
 }
 
 export default new UserRepository();
