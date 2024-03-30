@@ -1,6 +1,6 @@
 import Geocoding from '../../../../shared/lib/geocoding/geocoding';
 import { StatusCode } from '../../../../shared/utils';
-import { ValidationError } from '../../../../shared/lib/error/error-types';
+import { ValidationException } from '../../../../shared/lib/error/error-types';
 import { formatAddress } from '../../../../shared/utils/functions/format-address';
 import { User } from '../../../domain/model/user.model';
 import UserRepository from '../../../domain/repository/user.repository';
@@ -14,13 +14,13 @@ class CreateUserUseCase {
     coordinates,
   }: CreateUserDTO): Promise<{ statusCode: number; data: User }> {
     if (!coordinates && !address) {
-      throw new ValidationError({
+      throw new ValidationException({
         message: 'Address or coordinates must be provided!',
       });
     }
 
     if (coordinates && address) {
-      throw new ValidationError({
+      throw new ValidationException({
         message: 'Address and coordinates must not be provided together!',
       });
     }
@@ -28,7 +28,7 @@ class CreateUserUseCase {
     const findUser = await UserRepository.findOne({ email });
 
     if (findUser) {
-      throw new ValidationError({
+      throw new ValidationException({
         message: 'This email is already being used!',
       });
     }

@@ -1,6 +1,6 @@
 import { StatusCode } from "../../utils/contraints/status-code";
 
-export class ValidationError extends Error {
+export class ValidationException extends Error {
   statusCode: number;
   details: object;
 
@@ -15,14 +15,14 @@ export class ValidationError extends Error {
   }) {
     super();
     this.statusCode = statusCode;
-    this.name = 'ValidationError'
+    this.name = this.name
     this.message = message;
     this.details = details;
-    Object.setPrototypeOf(this, ValidationError.prototype);
+    Object.setPrototypeOf(this, ValidationException.prototype);
   }
 }
 
-export class DatabaseError extends Error {
+export class DatabaseException extends Error {
   statusCode: number;
   details: object;
   
@@ -41,11 +41,11 @@ export class DatabaseError extends Error {
     this.name = 'DatabaseError'
     this.message = message;
     this.details = details;
-    Object.setPrototypeOf(this, DatabaseError.prototype);
+    Object.setPrototypeOf(this, DatabaseException.prototype);
   }
 }
 
-export class ExternalRequestError extends Error {
+export class ExternalRequestException extends Error {
   statusCode: number;
   details: object;
 
@@ -63,11 +63,11 @@ export class ExternalRequestError extends Error {
     this.name = 'ExternalRequestError'
     this.message = message;
     this.details = details;
-    Object.setPrototypeOf(this, ExternalRequestError.prototype);
+    Object.setPrototypeOf(this, ExternalRequestException.prototype);
   }
 }
 
-export class NotFoundError extends Error {
+export class NotFoundException extends Error {
   statusCode: number;
   details: object;
 
@@ -82,9 +82,9 @@ export class NotFoundError extends Error {
   }) {
     super();
     this.statusCode = statusCode;
-    this.name = 'NotFoundError'
+    this.name = this.name
     this.message = message;
     this.details = details;
-    Object.setPrototypeOf(this, NotFoundError.prototype);
+    Object.setPrototypeOf(this, NotFoundException.prototype);
   }
 }

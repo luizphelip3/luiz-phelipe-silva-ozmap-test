@@ -4,7 +4,7 @@ import {
   GEOCODING_URL,
   GOOGLE_GEOCODING_API_KEY,
 } from '../../../../config/env/env-config';
-import { ExternalRequestError, ValidationError } from '../../utils';
+import { ExternalRequestException, ValidationException } from '../../utils';
 import { GeocodingResponse } from './types/geocoding.type';
 
 class Geocoding {
@@ -23,20 +23,20 @@ class Geocoding {
         !geocodingResponse.results.length ||
         geocodingResponse.status === 'ZERO_RESULTS'
       ) {
-        throw new ValidationError({
+        throw new ValidationException({
           message: 'Geocoding API returned no results',
         });
       }
 
       if (geocodingResponse.status !== 'OK') {
-        throw new ExternalRequestError({
+        throw new ExternalRequestException({
           message: 'Geocoding API returned invalid response status',
         });
       }
 
       return geocodingResponse.results[0].formatted_address;
     } catch (error) {
-      throw new ExternalRequestError({
+      throw new ExternalRequestException({
         message: 'Error while consulting Geocoding API',
         details: error.response.data.error_message
           ? error.response.data.error_message
@@ -59,20 +59,20 @@ class Geocoding {
         !geocodingResponse.results.length ||
         geocodingResponse.status === 'ZERO_RESULTS'
       ) {
-        throw new ValidationError({
+        throw new ValidationException({
           message: 'Geocoding API returned no results',
         });
       }
 
       if (geocodingResponse.status !== 'OK') {
-        throw new ExternalRequestError({
+        throw new ExternalRequestException({
           message: 'Geocoding API returned invalid response status',
         });
       }
 
       return geocodingResponse.results[0].geometry.location;
     } catch (error) {
-      throw new ExternalRequestError({
+      throw new ExternalRequestException({
         message: 'Error while consulting Geocoding API',
         details: error.response.data.error_message
           ? error.response.data.error_message

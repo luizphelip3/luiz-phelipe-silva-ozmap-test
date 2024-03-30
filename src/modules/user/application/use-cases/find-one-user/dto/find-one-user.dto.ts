@@ -1,5 +1,5 @@
 export type FindOneUserDTO = {
-  id?: string;
+  _id?: string;
   name?: string;
   email?: string;
 };

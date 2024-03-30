@@ -11,8 +11,6 @@ userRouter.post(
 );
 userRouter.get('/user', userController.findOneUser);
 userRouter.get('/users', userController.findUsers);
-userRouter.patch('users/:id', async (req, res) => {
-  return res.sendStatus(201);
-});
+userRouter.delete('/users/:id', userController.deleteUser)
 
 export { userRouter };

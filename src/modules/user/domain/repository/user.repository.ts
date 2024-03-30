@@ -1,4 +1,4 @@
-import { DatabaseError } from '../../../shared/utils';
+import { DatabaseException } from '../../../shared/utils';
 import { User, UserModel } from '../model/user.model';
 
 class UserRepository {
@@ -6,7 +6,7 @@ class UserRepository {
     try {
       return await UserModel.create(user);
     } catch (error) {
-      throw new DatabaseError({
+      throw new DatabaseException({
         message: 'Could not create user.',
         details: error.message,
       });
@@ -17,7 +17,7 @@ class UserRepository {
     try {
       return await UserModel.findOne(user);
     } catch (error) {
-      throw new DatabaseError({
+      throw new DatabaseException({
         message: 'Could not find user.',
         details: error.message,
       });
@@ -27,7 +27,7 @@ class UserRepository {
   async findAll(
     page: number,
     limit: number,
-  ): Promise<{ users: User[]; totalItems: number;}> {
+  ): Promise<{ users: User[]; totalItems: number }> {
     try {
       const [users, totalItems] = await Promise.all([
         UserModel.find()
@@ -36,10 +36,23 @@ class UserRepository {
         UserModel.count(),
       ]);
 
-      return { users, totalItems};
+      return { users, totalItems };
     } catch (error) {
-      throw new DatabaseError({
+      throw new DatabaseException({
         message: 'Could not find user.',
+        details: error.message,
+      });
+    }
+  }
+
+  async delete(id: string) {
+    try {
+      const user = await UserModel.deleteOne({ _id: id });
+
+      return user;
+    } catch (error) {
+      throw new DatabaseException({
+        message: 'Could not delete user',
         details: error.message,
       });
     }

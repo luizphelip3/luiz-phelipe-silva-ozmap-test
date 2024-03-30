@@ -1,6 +1,6 @@
 import { validate } from 'class-validator';
 import { NextFunction, Request, Response } from 'express';
-import { ValidationError } from '../../../../../shared/utils';
+import { ValidationException } from '../../../../../shared/utils';
 import { CreateUserRequestDTO } from './dto/create-user-request.dto';
 
 class UserRequestsValidator {
@@ -20,7 +20,7 @@ class UserRequestsValidator {
             : error.constraints,
         }));
 
-        throw new ValidationError({
+        throw new ValidationException({
           message: 'Please, review the data sended.',
           details: errorData,
         });

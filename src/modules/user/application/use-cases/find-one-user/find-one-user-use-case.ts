@@ -1,4 +1,4 @@
-import { NotFoundError } from '../../../../shared/lib/error/error-types';
+import { NotFoundException } from '../../../../shared/lib/error/error-types';
 import { StatusCode } from '../../../../shared/utils';
 import { removeNullAndUndefinedParams } from '../../../../shared/utils/functions/remove-undefined-params';
 import { User } from '../../../domain/model/user.model';
@@ -14,7 +14,7 @@ class FindOneUserUseCase {
     const findUser = await UserRepository.findOne(params);
 
     if (!findUser) {
-      throw new NotFoundError({
+      throw new NotFoundException({
         message: 'User not found',
         details: {
           message: `User not found with params`,
