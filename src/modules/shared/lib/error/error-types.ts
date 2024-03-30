@@ -1,4 +1,4 @@
-import { StatusCode } from "../contraints/status-code";
+import { StatusCode } from "../../utils/contraints/status-code";
 
 export class ValidationError extends Error {
   statusCode: number;
