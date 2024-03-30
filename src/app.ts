@@ -18,7 +18,7 @@ class App {
 
   routes() {
     this.server.use(express.json());
-    this.server.use('/user', userRouter);
+    this.server.use(userRouter);
   }
 }
 

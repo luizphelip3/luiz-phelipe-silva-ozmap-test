@@ -1,16 +1,18 @@
-import { Router } from "express";
-import userController from "../../presentation/controller/user.controller";
-import UserRequestsValidator from "../../presentation/controller/middlewares/create-user/create-user-validate";
+import { Router } from 'express';
+import UserRequestsValidator from '../../presentation/controller/middlewares/create-user/create-user-validate';
+import userController from '../../presentation/controller/user.controller';
 
 const userRouter = Router();
 
-userRouter.post('/', UserRequestsValidator.createUserValidate, userController.createUser);
-userRouter.get("/", userController.findOneUser);
-userRouter.get("/many", userController.findUsers);
-userRouter.patch("/:id", async (req, res) => {
+userRouter.post(
+  '/user',
+  UserRequestsValidator.createUserValidate,
+  userController.createUser,
+);
+userRouter.get('/user', userController.findOneUser);
+userRouter.get('/users', userController.findUsers);
+userRouter.patch('users/:id', async (req, res) => {
   return res.sendStatus(201);
 });
-
-
 
 export { userRouter };
