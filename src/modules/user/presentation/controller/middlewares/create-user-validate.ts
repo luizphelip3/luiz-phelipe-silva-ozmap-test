@@ -2,7 +2,7 @@ import { validate } from 'class-validator';
 import { NextFunction, Request, Response } from 'express';
 import { ValidationError } from '../../../../shared/utils';
 import { CreateUserRequestDTO } from './dto/create-user/create-user-request.dto';
-import { FindUserRequestDTO } from '../../dto/find-user-request/find-user-request.dto';
+import { FindUserRequestDTO } from './dto/find-user/find-user-request.dto';
 
 class UserRequestsValidator {
   async createUserValidate(req: Request, _res: Response, next: NextFunction) {
