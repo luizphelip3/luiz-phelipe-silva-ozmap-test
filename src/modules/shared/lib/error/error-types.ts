@@ -66,3 +66,25 @@ export class ExternalRequestError extends Error {
     Object.setPrototypeOf(this, ExternalRequestError.prototype);
   }
 }
+
+export class NotFoundError extends Error {
+  statusCode: number;
+  details: object;
+
+  constructor({
+    statusCode = StatusCode.NOT_FOUND,
+    message,
+    details
+  }: {
+    statusCode?: number;
+    message: string;
+    details?: object;
+  }) {
+    super();
+    this.statusCode = statusCode;
+    this.name = 'NotFoundError'
+    this.message = message;
+    this.details = details;
+    Object.setPrototypeOf(this, NotFoundError.prototype);
+  }
+}

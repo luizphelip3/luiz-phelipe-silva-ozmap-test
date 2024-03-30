@@ -1,13 +1,11 @@
 import { Router } from "express";
 import userController from "../../presentation/controller/user.controller";
-import validateUser from "../../presentation/middlewares/validate-user";
+import UserRequestsValidator from "../../presentation/controller/middlewares/create-user-validate";
 
 const userRouter = Router();
 
-userRouter.post('/', validateUser, userController.createUser);
-userRouter.get("/:id", async (req, res) => {
-  return res.sendStatus(201);
-});
+userRouter.post('/', UserRequestsValidator.createUserValidate, userController.createUser);
+userRouter.get("/", userController.findOneUser);
 userRouter.patch("/:id", async (req, res) => {
   return res.sendStatus(201);
 });

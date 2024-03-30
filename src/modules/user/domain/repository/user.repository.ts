@@ -6,7 +6,10 @@ class UserRepository {
     try {
       return await UserModel.create(user);
     } catch (error) {
-      throw new DatabaseError({ message: 'Could not create user.', details: error.message });
+      throw new DatabaseError({
+        message: 'Could not create user.',
+        details: error.message,
+      });
     }
   }
 
@@ -14,7 +17,10 @@ class UserRepository {
     try {
       return await UserModel.findOne(user);
     } catch (error) {
-      throw new DatabaseError({ message: 'Could not find user.', details: error.message });
+      throw new DatabaseError({
+        message: 'Could not find user.',
+        details: error.message,
+      });
     }
   }
 }
