@@ -1,6 +1,6 @@
 import Geocoding from '../../../../shared/lib/geocoding/geocoding';
 import { StatusCode } from '../../../../shared/utils';
-import { ValidationError } from '../../../../shared/utils/error/error-types';
+import { ValidationError } from '../../../../shared/lib/error/error-types';
 import { formatAddress } from '../../../../shared/utils/functions/format-address';
 import { User } from '../../../domain/model/user.model';
 import UserRepository from '../../../domain/repository/user.repository';
