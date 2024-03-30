@@ -1,4 +1,9 @@
-import { IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { Coordinates, Address } from '../../../shared/utils';
 import { Type } from 'class-transformer';
 import { AddressDTO } from './address.dto';
@@ -19,7 +24,9 @@ export class CreateUserRequestDTO {
   address?: AddressDTO;
 
   @IsOptional()
-  @ValidateNested()
+  @ValidateNested({
+    message: 'coordinates property must be an object with lat and lng data',
+  })
   @Type(() => CoordinatesDTO)
   coordinates?: CoordinatesDTO;
 

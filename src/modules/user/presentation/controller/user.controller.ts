@@ -6,7 +6,7 @@ class UserController {
   async createUser(req: Request, res: Response, next: NextFunction) {  
     try {
       const createdUser = await CreateUserUseCase.execute(req.body);
-      return res.status(StatusCode.CREATED).json(createdUser);
+      return res.status(createdUser.statusCode).json(createdUser.data);
     } catch (error) {
       next(error);
     }

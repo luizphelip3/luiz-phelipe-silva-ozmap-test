@@ -2,51 +2,67 @@ import { StatusCode } from "../contraints/status-code";
 
 export class ValidationError extends Error {
   statusCode: number;
+  details: object;
 
   constructor({
     statusCode = StatusCode.BAD_REQUEST,
     message,
+    details
   }: {
     statusCode?: number;
-    message: any;
+    message: string;
+    details?: object;
   }) {
-    super(message);
+    super();
     this.statusCode = statusCode;
     this.name = 'ValidationError'
+    this.message = message;
+    this.details = details;
     Object.setPrototypeOf(this, ValidationError.prototype);
   }
 }
 
 export class DatabaseError extends Error {
   statusCode: number;
+  details: object;
+  
 
   constructor({
     statusCode = StatusCode.INTERNAL_SERVER_ERROR,
     message,
+    details
   }: {
     statusCode?: number;
     message: string;
+    details?: object;
   }) {
-    super(message);
+    super();
     this.statusCode = statusCode;
     this.name = 'DatabaseError'
+    this.message = message;
+    this.details = details;
     Object.setPrototypeOf(this, DatabaseError.prototype);
   }
 }
 
 export class ExternalRequestError extends Error {
   statusCode: number;
+  details: object;
 
   constructor({
     statusCode = StatusCode.INTERNAL_SERVER_ERROR,
     message,
+    details,
   }: {
     statusCode?: number;
     message: string;
+    details?: object;
   }) {
-    super(message);
+    super();
     this.statusCode = statusCode;
     this.name = 'ExternalRequestError'
-    Object.setPrototypeOf(this, DatabaseError.prototype);
+    this.message = message;
+    this.details = details;
+    Object.setPrototypeOf(this, ExternalRequestError.prototype);
   }
 }

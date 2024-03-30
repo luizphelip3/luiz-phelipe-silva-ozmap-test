@@ -1,43 +1,50 @@
-import axios from 'axios';
-import { ExternalRequestError, ValidationError } from '../../utils';
+import axios, { AxiosError } from 'axios';
 import {
   GEOCODING_REVERSE_URL,
   GEOCODING_URL,
   GOOGLE_GEOCODING_API_KEY,
 } from '../../../../config/env/env-config';
-import {
-  GeocodingResponse,
-  GeocodingResponseStatus,
-} from './types/geo-lib.type';
+import { ExternalRequestError, ValidationError } from '../../utils';
+import { GeocodingResponse } from './types/geocoding.type';
 
 class Geocoding {
   async getAddressFromCoordinates(coordinates: {
     lat: number;
     lng: number;
   }): Promise<string> {
-    const geocodingRequest = await axios.request({
-      method: 'GET',
-      url: `${GEOCODING_REVERSE_URL}${coordinates.lat},${coordinates.lng}&key=${GOOGLE_GEOCODING_API_KEY}`,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    try {
+      const geocodingRequest = await axios.get(
+        `${GEOCODING_REVERSE_URL}${coordinates.lat},${coordinates.lng}&key=${GOOGLE_GEOCODING_API_KEY}`,
+      );
 
-    let geocodingResponse: GeocodingResponse = geocodingRequest.data;
+      let geocodingResponse: GeocodingResponse = geocodingRequest.data;
 
-    if (Object.values(GeocodingResponseStatus)[geocodingResponse.status] !== 'OK') {
+      if (geocodingResponse.status !== 'OK') {
+        throw new ExternalRequestError({
+          message: 'Resposta inválida da Geocoding API',
+        });
+      }
+
+      if (!geocodingResponse.results.length) {
+        throw new ValidationError({
+          message:
+            'Nenhum endereço foi encontrado com as coordenadas informadas',
+        });
+      }
+
+      return geocodingResponse.results[0].formatted_address;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        throw new ExternalRequestError({
+          message: 'Error while consulting Geocoding API',
+          details: error.response.data.error_message,
+        });
+      }
+
       throw new ExternalRequestError({
-        message: 'Resposta inválida da Geocoding API',
+        message: 'Error while consulting Geocoding API',
       });
     }
-
-    if (!geocodingResponse.results.length) {
-      throw new ValidationError({
-        message: 'Nenhum endereço foi encontrado com as coordenadas informadas',
-      });
-    }
-
-    return geocodingResponse.results[0].formatted_address;
   }
 
   async getCoordinatesFromAddressZipCode(
@@ -52,15 +59,14 @@ class Geocoding {
 
       if (
         !geocodingResponse.results.length ||
-        Object.values(GeocodingResponseStatus)[geocodingResponse.status] === 'ZERO_RESULTS'
+        geocodingResponse.status === 'ZERO_RESULTS'
       ) {
         throw new ValidationError({
-          message:
-            'Geocoding API returned no results',
+          message: 'Geocoding API returned no results',
         });
       }
 
-      if (Object.values(GeocodingResponseStatus)[geocodingResponse.status] !== 'OK') {
+      if (geocodingResponse.status !== 'OK') {
         throw new ExternalRequestError({
           message: 'Geocoding API returned invalid request status',
         });
@@ -68,6 +74,13 @@ class Geocoding {
 
       return geocodingResponse.results[0].geometry.location;
     } catch (error) {
+      if (error instanceof AxiosError) {
+        throw new ExternalRequestError({
+          message: 'Error while consulting Geocoding API',
+          details: error.response.data.error_message,
+        });
+      }
+
       throw new ExternalRequestError({
         message: 'Error while consulting Geocoding API',
       });

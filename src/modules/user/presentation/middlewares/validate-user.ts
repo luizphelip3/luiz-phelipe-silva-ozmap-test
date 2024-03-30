@@ -14,7 +14,19 @@ export default async function validateUser(
     const errors = await validate(newUser);
 
     if (errors.length > 0) {
-      throw new ValidationError({message: errors})
+      const errorData = errors.map((error) => ({
+        property: error.property,
+        constraints: error.children.length
+          ? error.children.map(
+              (child: any) => child.constraints.nestedValidation,
+            )
+          : error.constraints,
+      }));
+
+      throw new ValidationError({
+        message: 'Please, review the data sended.',
+        details: errorData,
+      });
     }
     next();
   } catch (error) {

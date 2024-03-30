@@ -6,7 +6,7 @@ class UserRepository {
     try {
       return await UserModel.create(user);
     } catch (error) {
-      throw new DatabaseError({ message: 'Could not create user.' });
+      throw new DatabaseError({ message: 'Could not create user.', details: error.message });
     }
   }
 }
