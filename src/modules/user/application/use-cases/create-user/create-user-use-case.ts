@@ -25,6 +25,14 @@ class CreateUserUseCase {
       });
     }
 
+    const findUser = await UserRepository.findOne({ email });
+
+    if (findUser) {
+      throw new ValidationError({
+        message: 'This email is already being used!',
+      });
+    }
+
     const userToCreate = new User();
 
     if (address) {
