@@ -45,11 +45,22 @@ class UserRepository {
     }
   }
 
-  async delete(id: string) {
+  async delete(id: string){
     try {
       const user = await UserModel.deleteOne({ _id: id });
 
       return user;
+    } catch (error) {
+      throw new DatabaseException({
+        message: 'Could not delete user',
+        details: error.message,
+      });
+    }
+  }
+
+  async update(id: string, user: Partial<User>) {
+    try {
+      return await UserModel.updateOne({ _id: id }, user);
     } catch (error) {
       throw new DatabaseException({
         message: 'Could not delete user',

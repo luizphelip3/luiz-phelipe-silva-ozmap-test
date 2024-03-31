@@ -1,13 +1,13 @@
+import { Type } from 'class-transformer';
 import {
   IsNotEmpty,
   IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { Coordinates, Address } from '../../../../../../shared/utils';
-import { Type } from 'class-transformer';
-import { AddressDTO } from './address.dto';
-import { CoordinatesDTO } from './coordinates.dto';
+import { Address, Coordinates } from '../../../../../../../shared/utils';
+import { AddressDTO } from '../address/address.dto';
+import { CoordinatesDTO } from '../coordinates/coordinates.dto';
 
 export class CreateUserRequestDTO {
   @IsNotEmpty({ message: 'Name should not be empty' })

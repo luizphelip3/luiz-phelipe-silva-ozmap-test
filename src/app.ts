@@ -1,7 +1,7 @@
-import express from "express";
-import { userRouter } from "./modules/user/infra/http/user.routes";
-import "./config/database/mongo-db";
-import { errorHandler } from "./modules/shared/lib/error/error-handler";
+import express from 'express';
+import { initMongoDatabase } from './config/database/mongo-db';
+import { errorHandler } from './modules/shared/lib/error/error-handler';
+import { userRouter } from './modules/user/infra/http/user.routes';
 
 class App {
   server: express.Application;
@@ -12,8 +12,12 @@ class App {
     this.middlewares();
   }
 
-  middlewares(){
+  middlewares() {
     this.server.use(errorHandler);
+  }
+
+  database() {
+    initMongoDatabase();
   }
 
   routes() {

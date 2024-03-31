@@ -1,4 +1,4 @@
-import { StatusCode } from "../../utils/contraints/status-code";
+import { StatusCode } from '../../utils/contraints/status-code';
 
 export class ValidationException extends Error {
   statusCode: number;
@@ -7,7 +7,7 @@ export class ValidationException extends Error {
   constructor({
     statusCode = StatusCode.BAD_REQUEST,
     message,
-    details
+    details,
   }: {
     statusCode?: number;
     message: string;
@@ -15,7 +15,7 @@ export class ValidationException extends Error {
   }) {
     super();
     this.statusCode = statusCode;
-    this.name = this.name
+    this.name = 'ValidationException';
     this.message = message;
     this.details = details;
     Object.setPrototypeOf(this, ValidationException.prototype);
@@ -25,12 +25,11 @@ export class ValidationException extends Error {
 export class DatabaseException extends Error {
   statusCode: number;
   details: object;
-  
 
   constructor({
     statusCode = StatusCode.INTERNAL_SERVER_ERROR,
     message,
-    details
+    details,
   }: {
     statusCode?: number;
     message: string;
@@ -38,7 +37,7 @@ export class DatabaseException extends Error {
   }) {
     super();
     this.statusCode = statusCode;
-    this.name = 'DatabaseError'
+    this.name = 'DatabaseError';
     this.message = message;
     this.details = details;
     Object.setPrototypeOf(this, DatabaseException.prototype);
@@ -60,7 +59,7 @@ export class ExternalRequestException extends Error {
   }) {
     super();
     this.statusCode = statusCode;
-    this.name = 'ExternalRequestError'
+    this.name = 'ExternalRequestError';
     this.message = message;
     this.details = details;
     Object.setPrototypeOf(this, ExternalRequestException.prototype);
@@ -74,7 +73,7 @@ export class NotFoundException extends Error {
   constructor({
     statusCode = StatusCode.NOT_FOUND,
     message,
-    details
+    details,
   }: {
     statusCode?: number;
     message: string;
@@ -82,7 +81,7 @@ export class NotFoundException extends Error {
   }) {
     super();
     this.statusCode = statusCode;
-    this.name = this.name
+    this.name = 'NotFoundException';
     this.message = message;
     this.details = details;
     Object.setPrototypeOf(this, NotFoundException.prototype);

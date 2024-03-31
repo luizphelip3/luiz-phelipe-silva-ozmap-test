@@ -31,6 +31,7 @@ class Geocoding {
       if (geocodingResponse.status !== 'OK') {
         throw new ExternalRequestException({
           message: 'Geocoding API returned invalid response status',
+          details: { status: geocodingResponse.status },
         });
       }
 
@@ -67,6 +68,7 @@ class Geocoding {
       if (geocodingResponse.status !== 'OK') {
         throw new ExternalRequestException({
           message: 'Geocoding API returned invalid response status',
+          details: { status: geocodingResponse.status },
         });
       }
 

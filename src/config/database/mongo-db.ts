@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export async function initDatabase() {
+export async function initMongoDatabase() {
   const MONGODB_URI =
     process.env.MONGODB_URI ||
     'mongodb+srv://mongo-db:27032@ozmap-challenge.jgwaeyh.mongodb.net/';
@@ -18,4 +18,4 @@ export async function initDatabase() {
   });
 }
 
-export default initDatabase();
+export default initMongoDatabase();
