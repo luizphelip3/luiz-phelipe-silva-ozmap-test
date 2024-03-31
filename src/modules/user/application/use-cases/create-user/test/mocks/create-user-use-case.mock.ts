@@ -27,9 +27,9 @@ export const mockCreateUserDTOWithExistingEmail = {
   email: 'existing@example.com',
   name: 'Test User',
   address: {
-    street: 'STREET',
-    number: 'NUMBER',
-    neighborhood: 'NEIGHBORHOOD',
+    street: 'street',
+    number: 'number',
+    neighborhood: 'neighborhood',
     city: 'city',
     state: 'state',
     zipCode: 'zipCode',
@@ -41,13 +41,13 @@ export const mockCreateUserDTOWithAddress = {
   email: 'existing@example.com',
   name: 'Test User',
   address: {
-    street: 'R. A Vivendas Da Serra',
-    number: '71',
-    neighborhood: 'Primavera',
-    city: 'Vitória da Conquista',
-    state: 'BA',
-    zipCode: '45012-238',
-    country: 'Brazil',
+    street: 'street',
+    number: 'number',
+    neighborhood: 'neighborhood',
+    city: 'city',
+    state: 'state',
+    zipCode: 'zipCode',
+    country: 'country',
   },
 };
 
