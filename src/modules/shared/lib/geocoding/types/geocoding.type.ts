@@ -1,45 +1,45 @@
-interface AddressComponent {
+interface IAddressComponent {
   long_name: string;
   short_name: string;
   types: string[];
 }
 
-interface Location {
+interface ILocation {
   lat: number;
   lng: number;
 }
 
-interface Viewport {
-  northeast: Location;
-  southwest: Location;
+interface IViewport {
+  northeast: ILocation;
+  southwest: ILocation;
 }
 
-interface Geometry {
-  location: Location;
+interface IGeometry {
+  location: ILocation;
   location_type: string;
-  viewport: Viewport;
+  viewport: IViewport;
 }
 
-interface PlusCode {
+interface IPlusCode {
   compound_code: string;
   global_code: string;
 }
 
-interface Result {
-  address_components: AddressComponent[];
+interface IResult {
+  address_components: IAddressComponent[];
   formatted_address: string;
-  geometry: Geometry;
+  geometry: IGeometry;
   place_id: string;
-  plus_code: PlusCode;
+  plus_code: IPlusCode;
   types: string[];
 }
 
-export interface GeocodingResponse {
-  results: Result[];
+export type GeocodingResponse = {
+  results: IResult[];
   status: GeocodingResponseStatus;
 }
 
-export enum GeocodingResponseStatus {
+enum GeocodingResponseStatus {
   OK = 'OK',
   ZERO_RESULTS = 'ZERO_RESULTS',
   OVER_DAILY_LIMIT = 'OVER_DAILY_LIMIT',

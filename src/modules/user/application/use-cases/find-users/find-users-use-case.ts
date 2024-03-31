@@ -9,8 +9,8 @@ class FindUsersUseCase {
     data: {
       users: User[];
       totalItems: number;
-      totalItemsPerPage: number;
       totalPages: number;
+      totalItemsPerPage: number;
     };
   }> {
     const findUser = await UserRepository.findAll(page, limit);

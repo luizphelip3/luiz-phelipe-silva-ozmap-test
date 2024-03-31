@@ -1,12 +1,14 @@
 import {
-    DatabaseException,
-    NotFoundException,
-    StatusCode
+  DatabaseException,
+  NotFoundException,
+  StatusCode,
 } from '../../../../shared/utils';
 import UserRepository from '../../../domain/repository/user.repository';
 
 class DeleteUserUseCase {
-  async execute(_id: string) {
+  async execute(
+    _id: string,
+  ): Promise<{ statusCode: number; data: { message: string } }> {
     const findUser = await UserRepository.findOne({ _id });
 
     if (!findUser) {

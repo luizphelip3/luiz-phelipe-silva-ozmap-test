@@ -9,9 +9,9 @@ export const mockCreateUserDTOWithAddressAndCoordinates = {
   email: 'test@example.com',
   name: 'Test User',
   address: {
-    street: 'STREET',
-    number: 'NUMBER',
-    neighborhood: 'NEIGHBORHOOD',
+    street: 'street',
+    number: 'number',
+    neighborhood: 'neighborhood',
     city: 'city',
     state: 'state',
     zipCode: 'zipCode',
