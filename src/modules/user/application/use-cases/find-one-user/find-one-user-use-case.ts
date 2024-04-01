@@ -9,7 +9,7 @@ class FindOneUserUseCase {
   async execute(
     input: FindOneUserDTO,
   ): Promise<{ statusCode: number; data: User }> {
-    const params: Partial<User> = removeNullAndUndefinedParams(input)
+    const params: Partial<User> = removeNullAndUndefinedParams(input);
 
     const findUser = await UserRepository.findOne(params);
 
@@ -23,9 +23,8 @@ class FindOneUserUseCase {
       });
     }
 
-    return { statusCode: StatusCode.CREATED, data: findUser };
+    return { statusCode: StatusCode.OK, data: findUser };
   }
 }
 
 export default new FindOneUserUseCase();
-
