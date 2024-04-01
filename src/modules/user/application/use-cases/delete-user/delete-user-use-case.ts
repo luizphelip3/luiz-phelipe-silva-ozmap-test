@@ -20,7 +20,6 @@ class DeleteUserUseCase {
     if (deleteUser.deletedCount < 1) {
       throw new DatabaseException({
         message: 'Fail during user deleting, no data was modified.',
-        statusCode: StatusCode.NOT_MODIFIED,
       });
     }
 
