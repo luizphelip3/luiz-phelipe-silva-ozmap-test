@@ -5,6 +5,7 @@ import {
   ValidationException,
   formatAddress,
 } from '../../../../shared/utils';
+import { User } from '../../../domain/model/user.model';
 import UserRepository from '../../../domain/repository/user.repository';
 import { UpdateUserDTO } from './dto/update-user.dto';
 
@@ -19,12 +20,29 @@ class UpdateUserUseCase {
       });
     }
 
-    const userToUpdate = await UserRepository.findOne({ _id: id });
+    const findUserById = await UserRepository.findOne({ _id: id });
 
-    if (!userToUpdate) {
+    if (!findUserById) {
       throw new NotFoundException({
         message: 'User not found!',
       });
+    }
+
+    let userToUpdate: Partial<User> = {
+      email,
+      name,
+      address: null,
+      coordinates: null,
+    };
+
+    if (email) {
+      const findUserByEmail = await UserRepository.findOne({ email });
+
+      if (findUserByEmail) {
+        throw new ValidationException({
+          message: 'This email is already being used!',
+        });
+      }
     }
 
     if (address) {
@@ -41,13 +59,10 @@ class UpdateUserUseCase {
       userToUpdate.coordinates = [coordinates.lat, coordinates.lng];
     }
 
-    userToUpdate.name = name ? name : userToUpdate.name;
-    userToUpdate.email = email ? email : userToUpdate.email;
-
     await UserRepository.update(id, userToUpdate);
 
     return { statusCode: StatusCode.NO_CONTENT, data: {} };
   }
 }
 
-export default new UpdateUserUseCase()
+export default new UpdateUserUseCase();
