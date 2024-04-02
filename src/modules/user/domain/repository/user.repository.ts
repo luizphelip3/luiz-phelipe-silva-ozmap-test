@@ -1,10 +1,15 @@
 import { DatabaseException } from '../../../shared/utils';
 import { User, UserModel } from '../model/user.model';
+import {
+  CreateUserDTO,
+  FindAllUsersDTO,
+  FindUserDTO,
+} from './dto/user.repository.dto';
 
 class UserRepository {
-  async create(user: User): Promise<User> {
+  async create(params: CreateUserDTO): Promise<User> {
     try {
-      return await UserModel.create(user);
+      return await UserModel.create(params);
     } catch (error) {
       throw new DatabaseException({
         message: 'Could not create user.',
@@ -13,9 +18,9 @@ class UserRepository {
     }
   }
 
-  async findOne(user: Partial<User>): Promise<User> {
+  async findOne(params: FindUserDTO): Promise<User> {
     try {
-      return await UserModel.findOne(user);
+      return await UserModel.findOne(params);
     } catch (error) {
       throw new DatabaseException({
         message: 'Could not find user.',
@@ -24,28 +29,27 @@ class UserRepository {
     }
   }
 
-  async findAll(
-    page: number,
-    limit: number,
-  ): Promise<{ users: User[]; totalItems: number }> {
+  async findAll({
+    limit,
+    page,
+  }: FindAllUsersDTO): Promise<{ users: User[]; totalItems: number }> {
     try {
       const [users, totalItems] = await Promise.all([
-        UserModel.find()
-          .limit(limit)
-          .skip((page - 1) * limit),
+        UserModel.find().limit(limit).skip((page - 1) * limit),
         UserModel.count(),
       ]);
 
       return { users, totalItems };
     } catch (error) {
+      console.log(error);
       throw new DatabaseException({
-        message: 'Could not find user.',
+        message: 'Could not find user data.',
         details: error.message,
       });
     }
   }
 
-  async delete(id: string){
+  async delete(id: string) {
     try {
       const user = await UserModel.deleteOne({ _id: id });
 

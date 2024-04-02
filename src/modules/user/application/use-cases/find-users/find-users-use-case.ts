@@ -13,7 +13,7 @@ class FindUsersUseCase {
       totalItemsPerPage: number;
     };
   }> {
-    const findUser = await UserRepository.findAll(page, limit);
+    const findUser = await UserRepository.findAll({ page, limit });
 
     return {
       statusCode: StatusCode.OK,
