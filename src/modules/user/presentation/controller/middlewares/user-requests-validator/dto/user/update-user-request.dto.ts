@@ -23,13 +23,4 @@ export class UpdateUserRequestDTO {
   @ValidateNested()
   @Type(() => CoordinatesDTO)
   coordinates?: CoordinatesDTO;
-
-  constructor(props: {
-    name?: string;
-    email?: string;
-    address?: Address;
-    coordinates?: Coordinates;
-  }) {
-    Object.assign(this, props);
-  }
 }

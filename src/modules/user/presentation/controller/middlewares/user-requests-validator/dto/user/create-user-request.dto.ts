@@ -5,7 +5,6 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { Address, Coordinates } from '../../../../../../../shared/utils';
 import { AddressDTO } from '../address/address.dto';
 import { CoordinatesDTO } from '../coordinates/coordinates.dto';
 
@@ -29,13 +28,4 @@ export class CreateUserRequestDTO {
   })
   @Type(() => CoordinatesDTO)
   coordinates?: CoordinatesDTO;
-
-  constructor(props: {
-    name: string;
-    email: string;
-    addres?: Address;
-    coordinates?: Coordinates;
-  }) {
-    Object.assign(this, props);
-  }
 }
