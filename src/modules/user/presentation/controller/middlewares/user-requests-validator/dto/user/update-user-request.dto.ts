@@ -1,6 +1,10 @@
 import { Type } from 'class-transformer';
-import { IsDefined, IsNotEmptyObject, IsOptional, IsString, ValidateNested } from 'class-validator';
-import { Address, Coordinates } from '../../../../../../../shared/utils';
+import {
+  IsNotEmptyObject,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { AddressDTO } from '../address/address.dto';
 import { CoordinatesDTO } from '../coordinates/coordinates.dto';
 

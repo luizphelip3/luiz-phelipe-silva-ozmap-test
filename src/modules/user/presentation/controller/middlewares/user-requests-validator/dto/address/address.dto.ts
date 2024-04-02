@@ -1,10 +1,4 @@
-import {
-  IsDefined,
-  IsNotEmpty,
-  IsString,
-  MaxLength,
-  ValidateNested,
-} from 'class-validator';
+import { IsDefined, IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class AddressDTO {
   @IsDefined({ message: 'street is required' })

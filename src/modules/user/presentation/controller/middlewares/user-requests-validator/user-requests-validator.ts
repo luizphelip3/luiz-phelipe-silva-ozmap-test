@@ -1,9 +1,9 @@
+import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 import { NextFunction, Request, Response } from 'express';
 import { ValidationException } from '../../../../../shared/utils';
 import { CreateUserRequestDTO } from './dto/user/create-user-request.dto';
 import { UpdateUserRequestDTO } from './dto/user/update-user-request.dto';
-import { plainToClass, plainToInstance } from 'class-transformer';
 
 class UserRequestsValidator {
   async createUserValidate(req: Request, _res: Response, next: NextFunction) {
@@ -16,11 +16,9 @@ class UserRequestsValidator {
         const errorData = errors.map((error) => ({
           param: error.property,
           nestedErrors: error.children.length
-            ? error.children.map(
-                (child: any) => child.constraints,
-              )
+            ? error.children.map((child: any) => child.constraints)
             : null,
-          errors: error.constraints
+          errors: error.constraints,
         }));
 
         throw new ValidationException({
@@ -36,7 +34,7 @@ class UserRequestsValidator {
 
   async updateUserValidate(req: Request, _res: Response, next: NextFunction) {
     try {
-      const userData = plainToInstance(UpdateUserRequestDTO, req.body)
+      const userData = plainToInstance(UpdateUserRequestDTO, req.body);
 
       const errors = await validate(userData);
 
@@ -44,11 +42,9 @@ class UserRequestsValidator {
         const errorData = errors.map((error) => ({
           param: error.property,
           nestedErrors: error.children.length
-            ? error.children.map(
-                (child: any) => child.constraints,
-              )
+            ? error.children.map((child: any) => child.constraints)
             : null,
-          errors: error.constraints
+          errors: error.constraints,
         }));
 
         throw new ValidationException({
