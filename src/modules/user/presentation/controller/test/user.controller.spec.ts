@@ -32,8 +32,8 @@ describe('UserController', () => {
     it('should create a user', async () => {
       const mockRequestData = {
         body: {
-          name: 'John Doe',
-          email: 'john@example.com',
+          name: 'name',
+          email: 'email@email.com',
         },
       };
       const mockResponseData = {
@@ -76,7 +76,7 @@ describe('UserController', () => {
       };
       const mockResponseData = {
         statusCode: 200,
-        data: { id: '123', name: 'John Doe', email: 'john@example.com' },
+        data: { id: '123', name: 'name', email: 'email@email.com' },
       };
       (FindOneUserUseCase.execute as jest.Mock).mockResolvedValue(
         mockResponseData,
@@ -126,8 +126,8 @@ describe('UserController', () => {
       const mockResponseData = {
         statusCode: 200,
         data: [
-          { id: '1', name: 'John Doe' },
-          { id: '2', name: 'Jane Doe' },
+          { id: '1', name: 'name' },
+          { id: '2', name: 'name2' },
         ],
       };
       (FindUsersUseCase.execute as jest.Mock).mockResolvedValue(
@@ -149,17 +149,21 @@ describe('UserController', () => {
     });
 
     it('should handle errors', async () => {
-        const mockError = new Error('Internal Server Error');
-        (FindUsersUseCase.execute as jest.Mock).mockRejectedValue(mockError);
-    
-        const mockRequestData = {
-          query: {},
-        };
-    
-        await UserController.findUsers(mockRequestData as Request, res as Response, next);
-    
-        expect(next).toHaveBeenCalledWith(mockError);
-      });
+      const mockError = new Error('Internal Server Error');
+      (FindUsersUseCase.execute as jest.Mock).mockRejectedValue(mockError);
+
+      const mockRequestData = {
+        query: {},
+      };
+
+      await UserController.findUsers(
+        mockRequestData as Request,
+        res as Response,
+        next,
+      );
+
+      expect(next).toHaveBeenCalledWith(mockError);
+    });
   });
 
   describe('updateUser', () => {
@@ -169,42 +173,51 @@ describe('UserController', () => {
           id: '123',
         },
         body: {
-          name: 'Updated Name',
-          email: 'updated@example.com',
+          name: 'Updated name',
+          email: 'updatedemail@email.com',
         },
       };
       const mockResponseData = {
         statusCode: 200,
         data: { message: 'User updated successfully' },
       };
-      (UpdateUserUseCase.execute as jest.Mock).mockResolvedValue(mockResponseData);
-  
-      await UserController.updateUser(mockRequestData as unknown as Request, res as Response, next);
-  
+      (UpdateUserUseCase.execute as jest.Mock).mockResolvedValue(
+        mockResponseData,
+      );
+
+      await UserController.updateUser(
+        mockRequestData as unknown as Request,
+        res as Response,
+        next,
+      );
+
       expect(UpdateUserUseCase.execute).toHaveBeenCalledWith('123', {
-        name: 'Updated Name',
-        email: 'updated@example.com',
+        name: 'Updated name',
+        email: 'updatedemail@email.com',
       });
       expect(res.status).toHaveBeenCalledWith(mockResponseData.statusCode);
       expect(res.json).toHaveBeenCalledWith(mockResponseData.data);
     });
-  
+
     it('should handle errors', async () => {
       const mockError = new Error('Internal Server Error');
       (UpdateUserUseCase.execute as jest.Mock).mockRejectedValue(mockError);
-  
-      // Ensure that the req object has necessary properties
+
       const mockRequestData = {
-        params: {}, // Ensure that params object exists, even if empty
-        body: {},   // Ensure that body object exists, even if empty
+        params: {},
+        body: {},
       };
-  
-      await UserController.updateUser(mockRequestData as Request, res as Response, next);
-  
+
+      await UserController.updateUser(
+        mockRequestData as Request,
+        res as Response,
+        next,
+      );
+
       expect(next).toHaveBeenCalledWith(mockError);
     });
   });
-  
+
   describe('deleteUser', () => {
     it('should delete a user', async () => {
       const mockRequestData = {
@@ -216,26 +229,35 @@ describe('UserController', () => {
         statusCode: 200,
         data: { message: 'User deleted successfully' },
       };
-      (DeleteUserUseCase.execute as jest.Mock).mockResolvedValue(mockResponseData);
-  
-      await UserController.deleteUser(mockRequestData as unknown as Request, res as Response, next);
-  
+      (DeleteUserUseCase.execute as jest.Mock).mockResolvedValue(
+        mockResponseData,
+      );
+
+      await UserController.deleteUser(
+        mockRequestData as unknown as Request,
+        res as Response,
+        next,
+      );
+
       expect(DeleteUserUseCase.execute).toHaveBeenCalledWith('123');
       expect(res.status).toHaveBeenCalledWith(mockResponseData.statusCode);
       expect(res.json).toHaveBeenCalledWith(mockResponseData.data);
     });
-  
+
     it('should handle errors', async () => {
       const mockError = new Error('Internal Server Error');
       (DeleteUserUseCase.execute as jest.Mock).mockRejectedValue(mockError);
-  
-      // Ensure that the req object has necessary properties
+
       const mockRequestData = {
-        params: {}, // Ensure that params object exists, even if empty
+        params: {},
       };
-  
-      await UserController.deleteUser(mockRequestData as Request, res as Response, next);
-  
+
+      await UserController.deleteUser(
+        mockRequestData as Request,
+        res as Response,
+        next,
+      );
+
       expect(next).toHaveBeenCalledWith(mockError);
     });
   });
