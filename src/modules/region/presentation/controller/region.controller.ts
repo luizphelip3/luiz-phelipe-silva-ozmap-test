@@ -3,10 +3,11 @@ import { NextFunction, Request, Response } from 'express';
 import CreateRegionUseCase from '../../application/use-cases/create-region/create-region-use-case';
 import FindOneRegionUseCase from '../../application/use-cases/find-one-region/find-one-region-use-case';
 import FindRegionsByCoordinateUseCase from '../../application/use-cases/find-regions-by-coordinate/find-regions-by-coordinate-use-case';
-import FindRegionsUseCase from '../../application/use-cases/find-regions/find-regions-use-case';
 import FindRegionsByDistanceUseCase from '../../application/use-cases/find-regions-by-distance/find-regions-by-distance-use-case';
+import FindRegionsUseCase from '../../application/use-cases/find-regions/find-regions-use-case';
 
 import { CreateRegionDTO } from '../../application/use-cases/create-region/dto/create-region.dto';
+import deleteRegionUseCase from '../../application/use-cases/delete-region/delete-region-use-case';
 
 class RegionController {
   async createRegion(req: Request, res: Response, next: NextFunction) {
@@ -88,6 +89,21 @@ class RegionController {
         distance: Number(distance),
         userId: userId ? userId.toString() : null,
       });
+
+      return res.status(statusCode).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteRegion(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { regionId, userId } = req.params;
+
+      const { statusCode, data } = await deleteRegionUseCase.execute(
+        regionId.toString(),
+        userId.toString(),
+      );
 
       return res.status(statusCode).json(data);
     } catch (error) {

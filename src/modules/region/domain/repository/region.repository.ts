@@ -1,15 +1,11 @@
-import {
-  Region,
-  RegionModel,
-  User,
-} from '../../../../config/database/models/models';
+import { Region, RegionModel } from '../../../../config/database/models/models';
 import { DatabaseException } from '../../../shared/utils';
 import {
   CreateRegionDTO,
-  FindRegionDTO,
-  FindAllRegionsDTO,
   FindAllRegionsByCoordinateDTO,
   FindAllRegionsByDistanceDTO,
+  FindAllRegionsDTO,
+  FindRegionDTO,
 } from './dto/region.repository.dto';
 
 class RegionRepository {
@@ -109,6 +105,17 @@ class RegionRepository {
     } catch (error) {
       throw new DatabaseException({
         message: 'Could not find regions data.',
+        details: error.message,
+      });
+    }
+  }
+
+  async delete(_id: string) {
+    try {
+      return await RegionModel.deleteOne({ _id });
+    } catch (error) {
+      throw new DatabaseException({
+        message: 'Could not delete region data.',
         details: error.message,
       });
     }

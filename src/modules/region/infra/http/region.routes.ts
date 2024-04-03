@@ -25,6 +25,10 @@ regionRouter.get(
   '/regions/:userId',
   regionController.findRegions,
 );
+regionRouter.delete(
+  '/regions/:regionId/:userId',
+  regionController.findRegions,
+);
 
 
 export { regionRouter };
