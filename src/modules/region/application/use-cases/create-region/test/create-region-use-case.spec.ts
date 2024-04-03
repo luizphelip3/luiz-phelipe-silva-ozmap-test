@@ -48,16 +48,16 @@ describe('CreateRegionUseCase', () => {
     expect(RegionRepository.findOne).toHaveBeenCalledWith({
       user: mockUser,
       coordinates: [
-        mockCreateRegionDTO.coordinates.lat,
         mockCreateRegionDTO.coordinates.lng,
+        mockCreateRegionDTO.coordinates.lat,
       ],
     });
     expect(RegionRepository.create).toHaveBeenCalledWith({
       name: mockCreateRegionDTO.name,
       user: mockUser,
       coordinates: [
-        mockCreateRegionDTO.coordinates.lat,
         mockCreateRegionDTO.coordinates.lng,
+        mockCreateRegionDTO.coordinates.lat,
       ],
     });
   });
@@ -94,8 +94,8 @@ describe('CreateRegionUseCase', () => {
     expect(RegionRepository.findOne).toHaveBeenCalledWith({
       user: mockUser,
       coordinates: [
-        mockCreateRegionDTO.coordinates.lat,
         mockCreateRegionDTO.coordinates.lng,
+        mockCreateRegionDTO.coordinates.lat,
       ],
     });
     expect(RegionRepository.create).not.toHaveBeenCalled();
