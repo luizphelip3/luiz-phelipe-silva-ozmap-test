@@ -141,13 +141,13 @@ describe('RegionRepository', () => {
     });
 
     it('should throw a DatabaseException when delete fails', async () => {
-      const userId = '1234567890';
+      const regionId = '1234567890';
 
       (RegionModel.deleteOne as jest.Mock).mockRejectedValue(
         new Error('Database error'),
       );
 
-      await expect(RegionRepository.delete(userId)).rejects.toThrow(
+      await expect(RegionRepository.delete(regionId)).rejects.toThrow(
         DatabaseException,
       );
     });
