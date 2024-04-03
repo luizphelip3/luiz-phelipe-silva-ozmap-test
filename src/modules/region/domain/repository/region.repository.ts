@@ -1,9 +1,14 @@
-import { Region, RegionModel } from '../../../../config/database/models/models';
+import {
+  Region,
+  RegionModel,
+  User,
+} from '../../../../config/database/models/models';
 import { DatabaseException } from '../../../shared/utils';
 import {
   CreateRegionDTO,
   FindRegionDTO,
   FindAllRegionsDTO,
+  FindAllRegionsByCoordinateDTO,
 } from './dto/region.repository.dto';
 
 class RegionRepository {
@@ -20,7 +25,7 @@ class RegionRepository {
 
   async findOne(params: FindRegionDTO): Promise<Region> {
     try {
-      return await RegionModel.findOne(params).populate('user');
+      return await RegionModel.findOne(params);
     } catch (error) {
       throw new DatabaseException({
         message: 'Error while finding region',
@@ -32,10 +37,11 @@ class RegionRepository {
   async findAll({
     limit,
     page,
+    user,
   }: FindAllRegionsDTO): Promise<{ regions: Region[]; totalItems: number }> {
     try {
       const [regions, totalItems] = await Promise.all([
-        RegionModel.find()
+        RegionModel.find({ user })
           .limit(limit)
           .skip((page - 1) * limit),
         RegionModel.count(),
@@ -50,7 +56,11 @@ class RegionRepository {
     }
   }
 
-  async findByCoordinate(lat: number, lng: number): Promise<Region[]> {
+  async findByCoordinate({
+    lat,
+    lng,
+    user,
+  }: FindAllRegionsByCoordinateDTO): Promise<Region[]> {
     try {
       return await RegionModel.find({
         coordinates: {
@@ -61,7 +71,8 @@ class RegionRepository {
             },
           },
         },
-      }).populate('user');
+        user,
+      });
     } catch (error) {
       throw new DatabaseException({
         message: 'Could not find regions data.',

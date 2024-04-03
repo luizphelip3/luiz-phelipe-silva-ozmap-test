@@ -1,3 +1,5 @@
+import { NotFoundException } from "../../../../../../shared/utils";
+
 export const mockFindRegionsParams = {
   page: 1,
   limit: 10,
@@ -17,3 +19,16 @@ export const mockResultFromDatabase = {
   users: [region],
   totalItems: 1,
 };
+
+export const mockUser = {
+  _id: 'user123',
+  name: 'Test User',
+  email: 'test@example.com',
+  address: '123 Test St',
+  coordinates: [30, 40],
+  regions: [],
+};
+
+export const mockUserNotFoundException = new NotFoundException({
+  message: 'User not found!',
+});

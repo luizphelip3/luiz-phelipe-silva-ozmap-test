@@ -6,6 +6,12 @@ export const mockFindRegionParams = {
   name: 'Test Region',
 };
 
+export const mockFindRegionWithUserNotFoundParams = {
+  _id: 'id-example',
+  email: 'test@example.com',
+  name: 'Test Region',
+};
+
 export const mockNotFoundException = new NotFoundException({
   message: 'Region not found',
   details: {
@@ -23,3 +29,16 @@ export const mockRegionFromDatabase = {
   updatedAt: '2024-04-03T12:09:13.619Z',
   __v: 0,
 };
+
+export const mockUser = {
+  _id: 'user123',
+  name: 'Test User',
+  email: 'test@example.com',
+  address: '123 Test St',
+  coordinates: [30, 40],
+  regions: [],
+};
+
+export const mockUserNotFoundException = new NotFoundException({
+  message: 'User not found!',
+});

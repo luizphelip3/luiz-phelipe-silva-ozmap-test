@@ -24,6 +24,7 @@ class CreateRegionUseCase {
     }
 
     const region = await RegionRepository.findOne({
+      user,
       coordinates: [coordinates.lat, coordinates.lng],
     });
 

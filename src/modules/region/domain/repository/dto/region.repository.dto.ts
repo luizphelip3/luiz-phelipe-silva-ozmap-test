@@ -1,4 +1,4 @@
-import { User } from "../../../../../config/database/models/models";
+import { User } from '../../../../../config/database/models/models';
 
 export type CreateRegionDTO = {
   name: string;
@@ -10,14 +10,17 @@ export type FindRegionDTO = {
   _id?: string;
   name?: string;
   coordinates?: [number, number];
+  user: User;
 };
 
 export type FindAllRegionsDTO = {
   page: number;
-  limit: number
+  limit: number;
+  user: User;
 };
 
 export type FindAllRegionsByCoordinateDTO = {
-  page: number;
-  limit: number
+  lat: number;
+  lng: number;
+  user: User;
 };
