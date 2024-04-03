@@ -9,6 +9,7 @@ import {
   FindRegionDTO,
   FindAllRegionsDTO,
   FindAllRegionsByCoordinateDTO,
+  FindAllRegionsByDistanceDTO,
 } from './dto/region.repository.dto';
 
 class RegionRepository {
@@ -73,6 +74,38 @@ class RegionRepository {
         },
         user,
       });
+    } catch (error) {
+      throw new DatabaseException({
+        message: 'Could not find regions data.',
+        details: error.message,
+      });
+    }
+  }
+
+  async findByDistance({
+    lat,
+    lng,
+    distance,
+    user,
+  }: FindAllRegionsByDistanceDTO): Promise<Region[]> {
+    try {
+      const query = {
+        coordinates: {
+          $near: {
+            $geometry: {
+              type: 'Point',
+              coordinates: [lng, lat],
+            },
+            $maxDistance: distance,
+          },
+        },
+      };
+
+      if (user) {
+        query['user'] = user;
+      }
+
+      return await RegionModel.find(query);
     } catch (error) {
       throw new DatabaseException({
         message: 'Could not find regions data.',

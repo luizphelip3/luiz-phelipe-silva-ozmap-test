@@ -4,6 +4,7 @@ import CreateRegionUseCase from '../../application/use-cases/create-region/creat
 import FindOneRegionUseCase from '../../application/use-cases/find-one-region/find-one-region-use-case';
 import FindRegionsByCoordinateUseCase from '../../application/use-cases/find-regions-by-coordinate/find-regions-by-coordinate-use-case';
 import FindRegionsUseCase from '../../application/use-cases/find-regions/find-regions-use-case';
+import FindRegionsByDistanceUseCase from '../../application/use-cases/find-regions-by-distance/find-regions-by-distance-use-case';
 
 import { CreateRegionDTO } from '../../application/use-cases/create-region/dto/create-region.dto';
 
@@ -53,7 +54,7 @@ class RegionController {
     }
   }
 
-  async findOneRegionByCoordinate(
+  async findRegionsByCoordinate(
     req: Request,
     res: Response,
     next: NextFunction,
@@ -70,6 +71,23 @@ class RegionController {
           lng: Number(lng),
         },
       );
+
+      return res.status(statusCode).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async findRegionsByDistance(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { lat, lng, distance, userId } = req.query;
+
+      const { statusCode, data } = await FindRegionsByDistanceUseCase.execute({
+        lat: Number(lat),
+        lng: Number(lng),
+        distance: Number(distance),
+        userId: userId ? userId.toString() : null,
+      });
 
       return res.status(statusCode).json(data);
     } catch (error) {

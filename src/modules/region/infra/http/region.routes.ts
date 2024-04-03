@@ -10,16 +10,21 @@ regionRouter.post(
   regionController.createRegion,
 );
 regionRouter.get(
-  '/regions/:userId',
-  regionController.findRegions,
-);
-regionRouter.get(
   '/region/:userId',
   regionController.findOneRegion,
 );
 regionRouter.get(
-  '/regions/coordinate/:userId',
-  regionController.findOneRegionByCoordinate,
+  '/regions/distance',
+  regionController.findRegionsByDistance,
 );
+regionRouter.get(
+  '/regions/coordinate/:userId',
+  regionController.findRegionsByCoordinate,
+);
+regionRouter.get(
+  '/regions/:userId',
+  regionController.findRegions,
+);
+
 
 export { regionRouter };

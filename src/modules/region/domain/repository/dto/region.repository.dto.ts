@@ -24,3 +24,10 @@ export type FindAllRegionsByCoordinateDTO = {
   lng: number;
   user: User;
 };
+
+export type FindAllRegionsByDistanceDTO = {
+  lat: number;
+  lng: number;
+  distance: number;
+  user?: User;
+};

@@ -45,6 +45,7 @@ class UserController {
         page: Number(page),
         limit: Number(limit),
       });
+
       return res.status(statusCode).json(data);
     } catch (error) {
       next(error);
