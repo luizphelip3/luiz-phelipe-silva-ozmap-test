@@ -1,69 +1,62 @@
-# OZmap Challenge: Construindo a Geolocalização do Futuro
+# Desafio OZmap
 
-Olá desenvolvedor(a)! Bem-vindo(a) ao Desafio Técnico do OZmap. Este é um projeto que simula um cenário real de nossa empresa, onde você irá desempenhar um papel crucial ao desenvolver uma API RESTful robusta para gerenciar usuários e localizações. Estamos muito animados para ver sua abordagem e solução!
+# Objetivo:
+Desenvolver utilizando uma API Restful para consulta e controle de geolocalização.
 
-## 🌍 **Visão Geral**
+# Sobre o Projeto
+- O projeto é um teste para a OZmap, utilizei conceitos de DDD, tentei aplicar SOLID ao máximo e também implementei testes unitários na maior parte do sistema.
+- Utilizei Docker para conteinerização.
+- Este projeto será atualizado com recorrência.
+  
+## Tecnologias utilizadas:
+- Express, 
+- Node.js, 
+- Mongoose,
+- MongoDB,
+- Jest
 
-Em um mundo conectado e globalizado, a geolocalização se torna cada vez mais essencial. E aqui no OZmap, buscamos sempre otimizar e melhorar nossos sistemas. Assim, você encontrará um protótipo que precisa de sua experiência para ser corrigido, melhorado e levado ao próximo nível.
+## Como Utilizar:
 
-## 🛠 **Especificações Técnicas**
+1. Clone o repositório para sua máquina utilizando o comando:
 
-- **Node.js**: Versão 20 ou superior.
-- **Banco de Dados**: Mongo 7+.
-- **ORM**: Mongoose / Typegoose.
-- **Linguagem**: Typescript.
-- **Formatação e Linting**: Eslint + prettier.
-- **Comunicação com MongoDB**: Deve ser feita via container.
+   `git clone [git@github.com:leonardocbrand/ozmap-challenge.git](https://github.com/luizphelip3/luiz-phelipe-silva-ozmap-test.git)`
 
-## 🔍 **Funcionalidades Esperadas**
+2. Entre na pasta do repositório e instale as dependências utilizando o comando:
 
-### Usuários
-- **CRUD** completo para usuários.
-- Cada usuário deve ter nome, email, endereço e coordenadas.
-- Na criação, o usuário pode fornecer endereço ou coordenadas. Haverá erro caso forneça ambos ou nenhum.
-- Uso de serviço de geolocalização para resolver endereço ↔ coordenadas.
-- Atualização de endereço ou coordenadas deve seguir a mesma lógica.
+   `npm install`
 
-### Regiões
-- **CRUD** completo para regiões.
-- Cada região tem um nome, coordenadas e um usuário que será o dono da região.
-- Listar regiões contendo um ponto específico.
-- Listar regiões a uma certa distância de um ponto, com opção de filtrar regiões não pertencentes ao usuário que fez a requisição.
+3. Crie um arquivo **.env** contendo as mesmas variáveis de ambiente presentes no arquivo **.env.example**, ou use os dados do exemplo abaixo:
+<pre>
+<code>DB_PORT=9009
+API_PORT=3001
+MONGODB_URI=mongodb+srv://mongo-db:27032@ozmap-challenge.jgwaeyh.mongodb.net/
+DB_NAME=ozmap-challenge
+DB_USER=mongo-db
+DB_PASS=27032
+GOOGLE_GEOCODING_API_KEY=AIzaSyBlv0cLDTLZooBH5XiY23J-zoojl3-C7Yg
+GOOGLE_GEOCODING_REVERSE_URL='https://maps.googleapis.com/maps/api/geocode/json?latlng='
+GOOGLE_GEOCODING_URL='https://maps.googleapis.com/maps/api/geocode/json?address='
+</code></pre>
 
-### Autenticação
-- Autenticação não é necessária.
+4. Abra um terminal na raíz do projeto e rode o comando <code>docker-compose up</code>;
 
-### Testes
-- Unitários e de integração.
+5. Os contêineres irão subir e a aplicação estará pronta para uso;
 
-## 🌟 **Diferenciais**
+## 💻 Aplicação:
 
-- Documentação completa da API.
-- Interface para visualização de logs.
-- Exportação de relatórios (.csv).
-- Cobertura de código.
+# Usuários
+- Nesta API, é possível criar um usuário utilizando de forma obrigatória nome e email, e opcionalmente coordenadas ou endereço.
+- Caso o usuário não envie as coordenadas, utilizando a Geocoding API da Google, iremos resgatar o dado de endereço.
+- Caso o usuário não envie o endereço completo, utilizando a Geocoding API da Google, iremos resgatar os dados de coordenadas.
+- O usuário deve enviar pelo menos um desses dados, e nunca pode enviar ambos ao mesmo tempo.
+- Será possível: atualizar, deletar, buscar todos de forma paginada e busca apenas um usuário.
 
-## ⚖ **Critérios de Avaliação**
+# Regiões
+- Nesta api é possível criar regiões utilizando de forma obrigatória nome, coordenadas e id do usuário dono da região.
+- Será possível: atualizar, deletar, buscar todas as regiões de forma paginada, buscar todas as regiões num ponto específico, buscar todas as regiões até uma determinada distância de um ponto específico, sendo o dono ou não da região.
 
-1. Organização e clareza do código.
-2. Estruturação do projeto.
-3. Qualidade e eficiência do código.
-4. Cobertura e qualidade de testes.
-5. Pontos diferenciais citados acima.
-6. Tempo de entrega.
-7. Padronização e clareza das mensagens de erro.
-8. Organização dos commits.
-9. Implementação de logs.
-10. Adesão às boas práticas de API RESTful.
+## Testes
+- Para rodar os testes, basta colar o comando no terminal na raíz do projeto: **npm run test**.
 
-## 🚀 **Entrega**
-
-1. Faça um fork deste repositório.
-2. Crie uma branch com o padrão `seu-nome-sobrenome`.
-3. Ao finalizar, faça um pull request para a branch `main` deste repositório.
-4. Envie um email `rh@ozmap.com.br` informando que o teste foi concluído.
-5. Aguarde nosso feedback.
-
----
-
-Estamos ansiosos para ver sua implementação e criatividade em ação! Boa sorte e que a força do código esteja com você! 🚀
+## Insomnia
+- Para realizar consultas à api, é possível fazê-lo de qualquer lugar, mas disponibilizei um arquivo insomnia.json com a collection da api, que armazena todas as rotas.
