@@ -21,7 +21,7 @@ jest.mock('../../../../domain/repository/region.repository', () => ({
   findByDistance: jest.fn(),
 }));
 
-describe('FindOneRegionByDistanceUseCase', () => {
+describe('FindRegionsByDistanceUseCase', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

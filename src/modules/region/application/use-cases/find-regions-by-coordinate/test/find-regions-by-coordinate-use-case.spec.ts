@@ -20,7 +20,7 @@ jest.mock('../../../../domain/repository/region.repository', () => ({
   findByCoordinate: jest.fn(),
 }));
 
-describe('FindOneRegionByCoordinateUseCase', () => {
+describe('FindRegionsByCoordinateUseCase', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
