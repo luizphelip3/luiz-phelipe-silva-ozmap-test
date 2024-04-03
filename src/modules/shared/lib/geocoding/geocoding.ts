@@ -56,7 +56,10 @@ class Geocoding {
       });
     }
 
-    return geocodingResponse.results[0]?.geometry?.location;
+    return {
+      lat: geocodingResponse.results[0]?.geometry?.location?.lat,
+      lng: geocodingResponse.results[0]?.geometry?.location?.lng,
+    };
   }
 }
 
