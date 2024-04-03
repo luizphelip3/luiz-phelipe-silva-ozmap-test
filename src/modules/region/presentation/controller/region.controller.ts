@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import CreateRegionUseCase from '../../application/use-cases/create-region/create-region-use-case';
 import FindRegionsUseCase from '../../application/use-cases/find-regions/find-regions-use-case';
 import FindOneRegionUseCase from '../../application/use-cases/find-one-region/find-one-region-use-case';
+import FindOneRegionByCoordinateUseCase from '../../application/use-cases/find-one-region-by-coordinate/find-one-region-by-coordinate-use-case';
 
 import { CreateRegionDTO } from '../../application/use-cases/create-region/dto/create-region.dto';
 
@@ -43,6 +44,26 @@ class RegionController {
         _id: id?.toString(),
         name: name?.toString(),
       });
+
+      return res.status(statusCode).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async findOneRegionByCoordinate(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    try {
+      const { lat, lng } = req.query;
+
+      const { statusCode, data } =
+        await FindOneRegionByCoordinateUseCase.execute({
+          lat: Number(lat),
+          lng: Number(lng),
+        });
 
       return res.status(statusCode).json(data);
     } catch (error) {

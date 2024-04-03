@@ -17,5 +17,9 @@ regionRouter.get(
   '/region',
   regionController.findOneRegion,
 );
+regionRouter.get(
+  '/region/coordinate',
+  regionController.findOneRegion,
+);
 
 export { regionRouter };

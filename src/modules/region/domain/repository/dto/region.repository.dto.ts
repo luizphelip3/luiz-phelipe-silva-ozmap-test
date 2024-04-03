@@ -16,3 +16,8 @@ export type FindAllRegionsDTO = {
   page: number;
   limit: number
 };
+
+export type FindAllRegionsByCoordinateDTO = {
+  page: number;
+  limit: number
+};

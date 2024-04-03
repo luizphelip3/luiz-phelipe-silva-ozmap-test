@@ -41,7 +41,6 @@ class UserRepository {
 
       return { users, totalItems };
     } catch (error) {
-      console.log(error);
       throw new DatabaseException({
         message: 'Could not find user data.',
         details: error.message,

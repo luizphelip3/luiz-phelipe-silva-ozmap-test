@@ -2,8 +2,8 @@
 export type CreateRegionDTO = {
   name: string;
   coordinates: {
-    lng: number;
     lat: number;
+    lng: number;
   };
   userId: string;
 };

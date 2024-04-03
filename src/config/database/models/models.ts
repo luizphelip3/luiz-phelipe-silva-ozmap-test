@@ -45,11 +45,11 @@ export class User extends Base {
 })
 @modelOptions({ schemaOptions: { validateBeforeSave: false } })
 export class Region extends Base {
-  @Prop({ required: true, auto: true })
-  _id: string;
-
   @Prop({ required: true })
   name!: string;
+
+  @Prop({ required: true, type: () => [Number], index: '2dsphere' })
+  coordinates!: [number, number];
 
   @Prop({ ref: () => User, required: true, type: () => String })
   user: Ref<User>;

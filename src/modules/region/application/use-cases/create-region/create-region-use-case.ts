@@ -24,7 +24,7 @@ class CreateRegionUseCase {
     }
 
     const region = await RegionRepository.findOne({
-      coordinates: [coordinates.lng, coordinates.lat],
+      coordinates: [coordinates.lat, coordinates.lng],
     });
 
     if (region) {
@@ -36,7 +36,7 @@ class CreateRegionUseCase {
     const newRegion = await RegionRepository.create({
       name,
       user,
-      coordinates: [coordinates.lng, coordinates.lat],
+      coordinates: [coordinates.lat, coordinates.lng],
     });
 
     return { statusCode: StatusCode.CREATED, data: newRegion };
