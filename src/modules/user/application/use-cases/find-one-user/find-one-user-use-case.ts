@@ -1,7 +1,7 @@
+import { User } from '../../../../../config/database/models/models';
 import { NotFoundException } from '../../../../shared/lib/error/error-types';
 import { StatusCode } from '../../../../shared/utils';
 import { removeNullAndUndefinedParams } from '../../../../shared/utils/functions/remove-undefined-params';
-import { User } from '../../../domain/model/user.model';
 import UserRepository from '../../../domain/repository/user.repository';
 import { FindOneUserDTO } from './dto/find-one-user.dto';
 

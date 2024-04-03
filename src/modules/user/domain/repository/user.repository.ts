@@ -1,5 +1,5 @@
+import { User, UserModel } from '../../../../config/database/models/models';
 import { DatabaseException } from '../../../shared/utils';
-import { User, UserModel } from '../model/user.model';
 import {
   CreateUserDTO,
   FindAllUsersDTO,

@@ -1,3 +1,4 @@
+import { User } from '../../../../../config/database/models/models';
 import Geocoding from '../../../../shared/lib/geocoding/geocoding';
 import {
   NotFoundException,
@@ -5,7 +6,6 @@ import {
   ValidationException,
   formatAddress,
 } from '../../../../shared/utils';
-import { User } from '../../../domain/model/user.model';
 import UserRepository from '../../../domain/repository/user.repository';
 import { UpdateUserDTO } from './dto/update-user.dto';
 

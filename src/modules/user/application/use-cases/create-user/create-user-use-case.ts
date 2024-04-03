@@ -2,9 +2,9 @@ import Geocoding from '../../../../shared/lib/geocoding/geocoding';
 import { StatusCode } from '../../../../shared/utils';
 import { ValidationException } from '../../../../shared/lib/error/error-types';
 import { formatAddress } from '../../../../shared/utils/functions/format-address';
-import { User } from '../../../domain/model/user.model';
 import UserRepository from '../../../domain/repository/user.repository';
 import { CreateUserDTO } from './dto/create-user.dto';
+import { User } from '../../../../../config/database/models/models';
 
 class CreateUserUseCase {
   async execute({

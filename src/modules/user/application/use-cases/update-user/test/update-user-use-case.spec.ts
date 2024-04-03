@@ -1,6 +1,6 @@
+import { User } from '../../../../../../config/database/models/models';
 import Geocoding from '../../../../../shared/lib/geocoding/geocoding';
 import { StatusCode } from '../../../../../shared/utils';
-import { User } from '../../../../domain/model/user.model';
 import UserRepository from '../../../../domain/repository/user.repository';
 import UpdateUserUseCase from '../update-user-use-case';
 import {

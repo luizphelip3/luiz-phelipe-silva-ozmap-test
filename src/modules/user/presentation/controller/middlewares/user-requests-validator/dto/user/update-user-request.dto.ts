@@ -5,8 +5,8 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { AddressDTO } from '../address/address.dto';
-import { CoordinatesDTO } from '../coordinates/coordinates.dto';
+import { AddressDTO } from '../../../../../../../shared/utils/dtos/address/address.dto';
+import { CoordinatesDTO } from '../../../../../../../shared/utils/dtos/coordinates/coordinates.dto';
 
 export class UpdateUserRequestDTO {
   @IsOptional()

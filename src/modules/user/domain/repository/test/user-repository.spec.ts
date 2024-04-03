@@ -1,7 +1,7 @@
 import UserRepository from '../user.repository';
-import { UserModel } from '../../model/user.model';
 import { DatabaseException } from '../../../../shared/utils';
 import { CreateUserDTO } from '../dto/user.repository.dto';
+import { UserModel } from '../../../../../config/database/models/models';
 
 jest.mock('../../model/user.model');
 

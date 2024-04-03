@@ -1,7 +1,8 @@
 import express from 'express';
-import { initMongoDatabase } from './config/database/mongo-db';
+import { initMongoDatabase } from './config/database/connection/mongo-db';
 import { errorHandler } from './modules/shared/lib/error/error-handler';
 import { userRouter } from './modules/user/infra/http/user.routes';
+import { regionRouter } from './modules/region/infra/http/region.routes';
 
 class App {
   server: express.Application;
@@ -23,6 +24,7 @@ class App {
   routes() {
     this.server.use(express.json());
     this.server.use(userRouter);
+    this.server.use(regionRouter);
   }
 }
 

@@ -1,5 +1,5 @@
+import { User } from '../../../../../config/database/models/models';
 import { StatusCode } from '../../../../shared/utils';
-import { User } from '../../../domain/model/user.model';
 import UserRepository from '../../../domain/repository/user.repository';
 import { FindUsersDTO } from './dto/find-users.dto';
 
