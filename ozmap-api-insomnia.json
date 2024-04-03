@@ -1,0 +1,533 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2024-04-03T18:21:26.765Z",
+  "__export_source": "insomnia.desktop.app:v8.6.1",
+  "resources": [
+    {
+      "_id": "req_50ecaeeaa24e432c954a80576b4dde84",
+      "parentId": "fld_b11897e11b0c44d986fbf6b5d9b1a3a4",
+      "modified": 1712147561052,
+      "created": 1711645714789,
+      "url": "http://localhost:3001/user",
+      "name": "Create User",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"algum nome\",\n\t\"email\": \"email4\",\n\t\"coordinates\": {\n\t\t\"lat\": -14.8539052,\n\t\t\"lng\": -40.8136744\n\t}\n}"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608701,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_b11897e11b0c44d986fbf6b5d9b1a3a4",
+      "parentId": "wrk_ff7272e38f204501a68e49aa4bcbffc6",
+      "modified": 1711906600843,
+      "created": 1711906600843,
+      "name": "user",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1711906600843,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_ff7272e38f204501a68e49aa4bcbffc6",
+      "parentId": null,
+      "modified": 1711645707210,
+      "created": 1711645707210,
+      "name": "ozmap-api",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_73fedcf681414e1bbf5ab8d4ed85dfcf",
+      "parentId": "fld_b11897e11b0c44d986fbf6b5d9b1a3a4",
+      "modified": 1711910792724,
+      "created": 1711906618807,
+      "url": "http://localhost:3001/user/6605bd1016ce865096a74517",
+      "name": "Update User",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"algum nome\",\n\t\"email\": \"email2\",\n\t\"coordinates\": {\n\t\t\"latitude\": \"-14.852641\"\n\t}\n}"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608676,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_1e0ae960cb0a4d149c375bc1b73cbdd4",
+      "parentId": "fld_b11897e11b0c44d986fbf6b5d9b1a3a4",
+      "modified": 1712146235335,
+      "created": 1711810777712,
+      "url": "http://localhost:3001/user",
+      "name": "Find One User",
+      "description": "",
+      "method": "GET",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [
+        {
+          "id": "pair_ab1cf754c5e8448497b9bfb7acb1ec17",
+          "name": "id",
+          "value": "6605b269258702d2c7befa58",
+          "description": ""
+        },
+        {
+          "id": "pair_8858938da68c4cce9a3120b50db10be0",
+          "name": "",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608651,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_7b5d718a37a54aef9a644d66faa132ab",
+      "parentId": "fld_b11897e11b0c44d986fbf6b5d9b1a3a4",
+      "modified": 1711906612147,
+      "created": 1711904762947,
+      "url": "http://localhost:3001/user/6605b1774bc59b5cdef1571e",
+      "name": "Delete User",
+      "description": "",
+      "method": "DELETE",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [
+        {
+          "id": "pair_ab1cf754c5e8448497b9bfb7acb1ec17",
+          "name": "name",
+          "value": "algum nome",
+          "description": ""
+        },
+        {
+          "id": "pair_8858938da68c4cce9a3120b50db10be0",
+          "name": "email",
+          "value": "email2",
+          "description": ""
+        }
+      ],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608626,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c370fe14570b4ae496f2522b41416e2b",
+      "parentId": "fld_b11897e11b0c44d986fbf6b5d9b1a3a4",
+      "modified": 1712066161857,
+      "created": 1711813077388,
+      "url": "http://localhost:3001/users",
+      "name": "Find Users",
+      "description": "",
+      "method": "GET",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [
+        {
+          "id": "pair_80b290ff294a4c9a93cb09923b6e58ff",
+          "name": "page",
+          "value": "1",
+          "description": ""
+        },
+        {
+          "id": "pair_fa07e388c13641ffad3fa1b3f92cc38d",
+          "name": "limit",
+          "value": "10",
+          "description": ""
+        }
+      ],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608601,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_35bb1a106d3c4ed094d75cea6909f013",
+      "parentId": "fld_e28c60e210a0498ba9f085aa690e4e00",
+      "modified": 1712156568766,
+      "created": 1712101978600,
+      "url": "http://localhost:3001/region",
+      "name": "Create Region",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"saida\",\n\t\"coordinates\": {\n\t\t\"lat\": -14.850419277893747,\n\t\t\"lng\": -40.895230141804038\n\t},\n\t\"userId\": \"6605b269258702d2c7befa58\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608701,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_e28c60e210a0498ba9f085aa690e4e00",
+      "parentId": "wrk_ff7272e38f204501a68e49aa4bcbffc6",
+      "modified": 1712101978593,
+      "created": 1712101978593,
+      "name": "region",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1711652599601,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_73a8df9e4f2647fea4757aaf4412d6ed",
+      "parentId": "fld_e28c60e210a0498ba9f085aa690e4e00",
+      "modified": 1712163404957,
+      "created": 1712101978635,
+      "url": "http://localhost:3001/region/660d5b1967dcbffc3e3d9416/6605b272258702d2c7befa5a",
+      "name": "Update Region",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"mudei o nome\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608676,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_6a270f60d45746c098063cb243a2c1f8",
+      "parentId": "fld_e28c60e210a0498ba9f085aa690e4e00",
+      "modified": 1712149535584,
+      "created": 1712101978609,
+      "url": "http://localhost:3001/region",
+      "name": "Find One Region",
+      "description": "",
+      "method": "GET",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [
+        {
+          "id": "pair_ab1cf754c5e8448497b9bfb7acb1ec17",
+          "name": "name",
+          "value": "algum nome2",
+          "description": ""
+        }
+      ],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608651,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_51df239017814224909488038eb60268",
+      "parentId": "fld_e28c60e210a0498ba9f085aa690e4e00",
+      "modified": 1712152815149,
+      "created": 1712151050481,
+      "url": "http://localhost:3001/regions/coordinate/6605b269258702d2c7befa58",
+      "name": "Find Regions By Coordinate",
+      "description": "",
+      "method": "GET",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [
+        {
+          "id": "pair_ab1cf754c5e8448497b9bfb7acb1ec17",
+          "name": "lat",
+          "value": "-14.8539053",
+          "description": ""
+        },
+        {
+          "id": "pair_50a2c4b9aa2a42b59caa46a39133766d",
+          "name": "lng",
+          "value": "-40.8136744",
+          "description": ""
+        }
+      ],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608638.5,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_da75f8e5bf6b46d58eb5e21b2eb21f1e",
+      "parentId": "fld_e28c60e210a0498ba9f085aa690e4e00",
+      "modified": 1712158010608,
+      "created": 1712154917756,
+      "url": "http://localhost:3001/regions/distance/",
+      "name": "Find Regions By Distance",
+      "description": "",
+      "method": "GET",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [
+        {
+          "id": "pair_ab1cf754c5e8448497b9bfb7acb1ec17",
+          "name": "lat",
+          "value": "-40.807498067683255",
+          "description": ""
+        },
+        {
+          "id": "pair_50a2c4b9aa2a42b59caa46a39133766d",
+          "name": "lng",
+          "value": "-14.851250623269063",
+          "description": ""
+        },
+        {
+          "id": "pair_4cb4a1df155444bc892bdfff130a4de7",
+          "name": "distance",
+          "value": "16000",
+          "description": ""
+        },
+        {
+          "id": "pair_22da679df05d46ffae8e08f29e8f46a4",
+          "name": "userId",
+          "value": "6605b269258702d2c7befa58",
+          "description": ""
+        }
+      ],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608632.25,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_338d16b3e4174b199ab7882fab8e7290",
+      "parentId": "fld_e28c60e210a0498ba9f085aa690e4e00",
+      "modified": 1712163360291,
+      "created": 1712101978628,
+      "url": "http://localhost:3001/region/6605b1774bc59b5cdef1571e",
+      "name": "Delete Region",
+      "description": "",
+      "method": "DELETE",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [
+        {
+          "id": "pair_ab1cf754c5e8448497b9bfb7acb1ec17",
+          "name": "name",
+          "value": "algum nome",
+          "description": ""
+        },
+        {
+          "id": "pair_8858938da68c4cce9a3120b50db10be0",
+          "name": "email",
+          "value": "email2",
+          "description": ""
+        }
+      ],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608626,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c53b5534666d416e9c5695abc4c530e4",
+      "parentId": "fld_e28c60e210a0498ba9f085aa690e4e00",
+      "modified": 1712148429461,
+      "created": 1712101978618,
+      "url": "http://localhost:3001/regions",
+      "name": "Find Regions",
+      "description": "",
+      "method": "GET",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [
+        {
+          "id": "pair_80b290ff294a4c9a93cb09923b6e58ff",
+          "name": "page",
+          "value": "1",
+          "description": ""
+        },
+        {
+          "id": "pair_fa07e388c13641ffad3fa1b3f92cc38d",
+          "name": "limit",
+          "value": "10",
+          "description": ""
+        }
+      ],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/8.6.1" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1711906608601,
+      "isPrivate": false,
+      "pathParameters": [],
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_d0f4b6bebea64ca3b699a689f6f9177a63f0df8f",
+      "parentId": "wrk_ff7272e38f204501a68e49aa4bcbffc6",
+      "modified": 1711802443522,
+      "created": 1711645707224,
+      "name": "Base Environment",
+      "data": {
+        "address": {
+          "street": "R. A Vivendas Da Serra",
+          "number": "71",
+          "neighborhood": "Primavera",
+          "city": "Vitória da Conquista",
+          "state": "BA",
+          "zipCode": "45012-238",
+          "country": "Brazil"
+        },
+        "coordinates": { "lat": -14.852641, "lng": -40.807848 }
+      },
+      "dataPropertyOrder": {
+        "&": ["address", "coordinates"],
+        "&~|address": [
+          "street",
+          "number",
+          "neighborhood",
+          "city",
+          "state",
+          "zipCode",
+          "country"
+        ],
+        "&~|coordinates": ["lat", "lng"]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1711645707224,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_d0f4b6bebea64ca3b699a689f6f9177a63f0df8f",
+      "parentId": "wrk_ff7272e38f204501a68e49aa4bcbffc6",
+      "modified": 1711645707227,
+      "created": 1711645707227,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    }
+  ]
+}
