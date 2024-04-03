@@ -101,8 +101,8 @@ class RegionController {
       const { regionId, userId } = req.params;
 
       const { statusCode, data } = await DeleteRegionUseCase.execute(
-        regionId.toString(),
-        userId.toString(),
+        regionId?.toString(),
+        userId?.toString(),
       );
 
       return res.status(statusCode).json(data);
@@ -117,8 +117,8 @@ class RegionController {
       const updateRegionData: UpdateRegionDTO = req.body;
 
       const { statusCode, data } = await UpdateRegionUseCase.execute(
-        regionId.toString(),
-        userId.toString(),
+        regionId?.toString(),
+        userId?.toString(),
         updateRegionData,
       );
 
