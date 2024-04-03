@@ -9,10 +9,13 @@ regionRouter.post(
   regionRequestsValidator.createRegionValidate,
   regionController.createRegion,
 );
-
 regionRouter.get(
   '/regions',
   regionController.findRegions,
+);
+regionRouter.get(
+  '/region',
+  regionController.findOneRegion,
 );
 
 export { regionRouter };

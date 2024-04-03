@@ -17,7 +17,7 @@ class FindOneUserUseCase {
       throw new NotFoundException({
         message: 'User not found',
         details: {
-          message: `User not found with params`,
+          message: `User not found with the following params`,
           params: Object.entries(params),
         },
       });

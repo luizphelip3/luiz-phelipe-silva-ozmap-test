@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from 'express';
 
 import CreateRegionUseCase from '../../application/use-cases/create-region/create-region-use-case';
 import FindRegionsUseCase from '../../application/use-cases/find-regions/find-regions-use-case';
+import FindOneRegionUseCase from '../../application/use-cases/find-one-region/find-one-region-use-case';
+
 import { CreateRegionDTO } from '../../application/use-cases/create-region/dto/create-region.dto';
 
 class RegionController {
@@ -27,6 +29,21 @@ class RegionController {
         page: Number(page),
         limit: Number(limit),
       });
+      return res.status(statusCode).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async findOneRegion(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id, name } = req.query;
+
+      const { statusCode, data } = await FindOneRegionUseCase.execute({
+        _id: id?.toString(),
+        name: name?.toString(),
+      });
+
       return res.status(statusCode).json(data);
     } catch (error) {
       next(error);

@@ -9,7 +9,6 @@ export type CreateRegionDTO = {
 export type FindRegionDTO = {
   _id?: string;
   name?: string;
-  user?: User;
   coordinates?: [number, number];
 };
 

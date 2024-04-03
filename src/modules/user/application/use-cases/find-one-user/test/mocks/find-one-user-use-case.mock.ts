@@ -9,7 +9,7 @@ export const mockFindUserParams = {
 export const mockNotFoundException = new NotFoundException({
   message: 'User not found',
   details: {
-    message: `User not found with as params`,
+    message: `User not found with the following params`,
     params: Object.entries(mockFindUserParams),
   },
 });
