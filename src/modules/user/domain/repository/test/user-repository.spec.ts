@@ -3,7 +3,7 @@ import { DatabaseException } from '../../../../shared/utils';
 import { CreateUserDTO } from '../dto/user.repository.dto';
 import { UserModel } from '../../../../../config/database/models/models';
 
-jest.mock('../../model/user.model');
+jest.mock('../../../../../config/database/models/models');
 
 describe('UserRepository', () => {
   beforeEach(() => {
