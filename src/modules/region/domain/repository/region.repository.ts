@@ -120,6 +120,17 @@ class RegionRepository {
       });
     }
   }
+
+  async update(_id: string, region: Partial<Region>) {
+    try {
+      return await RegionModel.updateOne({ _id }, region);
+    } catch (error) {
+      throw new DatabaseException({
+        message: 'Could not update region.',
+        details: error.message,
+      });
+    }
+  }
 }
 
 export default new RegionRepository();

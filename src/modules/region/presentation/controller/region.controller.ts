@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
-
+import { CreateRegionDTO } from '../../application/use-cases/create-region/dto/create-region.dto';
+import { UpdateRegionDTO } from '../../application/use-cases/update-region/dto/update-region-use-case.dto';
 import CreateRegionUseCase from '../../application/use-cases/create-region/create-region-use-case';
 import FindOneRegionUseCase from '../../application/use-cases/find-one-region/find-one-region-use-case';
 import FindRegionsByCoordinateUseCase from '../../application/use-cases/find-regions-by-coordinate/find-regions-by-coordinate-use-case';
 import FindRegionsByDistanceUseCase from '../../application/use-cases/find-regions-by-distance/find-regions-by-distance-use-case';
 import FindRegionsUseCase from '../../application/use-cases/find-regions/find-regions-use-case';
-
-import { CreateRegionDTO } from '../../application/use-cases/create-region/dto/create-region.dto';
-import deleteRegionUseCase from '../../application/use-cases/delete-region/delete-region-use-case';
+import DeleteRegionUseCase from '../../application/use-cases/delete-region/delete-region-use-case';
+import UpdateRegionUseCase from '../../application/use-cases/update-region/update-region-use-case';
 
 class RegionController {
   async createRegion(req: Request, res: Response, next: NextFunction) {
@@ -100,9 +100,26 @@ class RegionController {
     try {
       const { regionId, userId } = req.params;
 
-      const { statusCode, data } = await deleteRegionUseCase.execute(
+      const { statusCode, data } = await DeleteRegionUseCase.execute(
         regionId.toString(),
         userId.toString(),
+      );
+
+      return res.status(statusCode).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async updateRegion(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { regionId, userId } = req.params;
+      const updateRegionData: UpdateRegionDTO = req.body;
+
+      const { statusCode, data } = await UpdateRegionUseCase.execute(
+        regionId.toString(),
+        userId.toString(),
+        updateRegionData,
       );
 
       return res.status(statusCode).json(data);

@@ -13,6 +13,11 @@ regionRouter.get(
   '/region/:userId',
   regionController.findOneRegion,
 );
+regionRouter.patch(
+  '/region/:regionId/:userId',
+  regionRequestsValidator.updateRegionValidate,
+  regionController.updateRegion,
+);
 regionRouter.get(
   '/regions/distance',
   regionController.findRegionsByDistance,
