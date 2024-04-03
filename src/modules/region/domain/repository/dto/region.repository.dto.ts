@@ -12,3 +12,8 @@ export type FindRegionDTO = {
   user?: User;
   coordinates?: [number, number];
 };
+
+export type FindAllRegionsDTO = {
+  page: number;
+  limit: number
+};

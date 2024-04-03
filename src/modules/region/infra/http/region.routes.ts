@@ -10,4 +10,9 @@ regionRouter.post(
   regionController.createRegion,
 );
 
+regionRouter.get(
+  '/regions',
+  regionController.findRegions,
+);
+
 export { regionRouter };
