@@ -13,10 +13,6 @@ export const mockUser = {
   regions: [],
 };
 
-export const mockUpdateRegionDTOWithAddressFormatted = {
-  name: 'Test Region',
-};
-
 export const mockUpdateRegionDTOWithCoordinates = {
   coordinates: { lat: 1234567, lng: 7654321 },
 };
